@@ -1,0 +1,33 @@
+html,body{
+	height:100%;
+}
+#app{
+	height:100%;
+	width:100%;
+	.box{
+		height:100%;
+		width:100%;
+		.header{
+			height:15%;
+			width:100%;
+
+			h1{
+				width:30%;
+				float:left;
+				text-align:center;
+
+			}
+		
+			background-color:#1F2D3D;
+			color:white;
+		}
+
+		.leftBox{
+			height:85%;
+			width:20%;
+			background-color:#324057;
+			color:white;
+		}
+	}
+}
+
