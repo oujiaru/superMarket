@@ -1,7 +1,7 @@
 var mysql = require('mysql');
 
 //要操作的数据库
-var database = 'supermarket';
+var database = 'superma';
 module.exports = {
 	add: function(list, data, callback){
 		var connection = mysql.createConnection({
@@ -19,7 +19,6 @@ module.exports = {
 		}
 		item = item.slice(0,-1);
 		str = str.slice(0,-1);
-		console.log(item,str); 
 		var  addSql = 'INSERT INTO' + ' ' + list + '(' + item + ') VALUES('+ str +')';
 		// var  addSqlParams = [data.Code, data.Name, data.Price, data.Unit, data.Type, data.Standard, data.SupplierID];
 		connection.query(addSql, arr, function (err, result) {
@@ -82,7 +81,7 @@ module.exports = {
 		});
 		connection.end();
 	},
-	query: function(callback){
+	query: function(data, callback){
 		var connection = mysql.createConnection({
 		  host     : 'localhost',
 		  user     : 'root',
@@ -90,14 +89,17 @@ module.exports = {
 		  database : database
 		});
 		connection.connect();
-		var  sql = 'SELECT * FROM goods';
+		var  sql = 'SELECT * FROM xiao';
 		connection.query(sql,function (err, result) {
+			console.log(result)
 		   if(!err){
 			    if(callback && typeof callback == 'function'){
 			    	callback(result);
+
 			    }
 		    }       
 		});
+		connection.end();
 	}
 }
 // select
@@ -142,4 +144,16 @@ module.exports = {
 //         console.log('与mysql数据库建立连接失败');  
 //     }else{  
 //         console.log('与mysql数据库建立连接成功');  
-/
+//         connection.query(querySql, function(err,result){  
+//             if(err){  
+//             	console.log(err)
+//                 console.log('查询数据失败');  
+//             }else{  
+//                 console.log('查询数据成功');  
+//                 console.log(result);  
+//                 connection.end();  
+//             }  
+//         })  
+//     }  
+// })  
+// connection.end();
