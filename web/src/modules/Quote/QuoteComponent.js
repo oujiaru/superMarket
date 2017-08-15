@@ -5,6 +5,7 @@ import { Button } from 'element-react';
 import { Select } from 'element-react';
 import { Input } from 'element-react';
 import { Table} from 'element-react';
+import { Link } from 'react-router';
 import './Quote.scss';
 
 class QuoteComponent extends Component{
@@ -65,6 +66,15 @@ class QuoteComponent extends Component{
         prop: "",
 
       },
+      {
+        label: "操作",
+        prop: "zip",
+        fixed: 'right',
+        width: 100,
+        render: ()=>{
+          return <span><Button type="text" size="small">移除</Button><Button type="text" size="small">编辑</Button></span>
+        }
+      }
       
     ],
         data: [{
@@ -184,7 +194,7 @@ render() {
       </Form.Item>
 
       <Form.Item>
-       <Button nativeType="submit" type="primary"><Link to="/Qcompile">编辑 </Link></Button>
+       <Button nativeType="submit" type="primary"><Link to="/Qcompile">新建</Link></Button>
       </Form.Item>
 
     </Form>
