@@ -11,10 +11,10 @@ import QcompileComponent from './modules/Qcompile/QcompileComponent'
 
 export default [
 	<Route path="/" component={AppComponent}>
-		
+		<Route path="/PO" component={POComponent} />,
 	</Route>,
 	<Route path="/login" component={LoginComponent}/>,
-	<Route path="/PO" component={POComponent} />,
+	
 	<Route path="/Quote" component={QuoteComponent} />,
 	<Route path="/Qcompile" component={QcompileComponent} />,
 
