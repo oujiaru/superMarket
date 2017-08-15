@@ -184,7 +184,7 @@ render() {
       </Form.Item>
 
       <Form.Item>
-        <Button nativeType="submit" type="primary">编辑</Button>
+       <Button nativeType="submit" type="primary"><Link to="/Qcompile">编辑 </Link></Button>
       </Form.Item>
 
     </Form>

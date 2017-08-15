@@ -7,3 +7,6 @@ export default function push(_batch,_Suppliers, _barcode,_poid, _shopname,_purch
         data: {_batch,_Suppliers, _barcode,_poid, _shopname,_purchasingcost,_price,_number,_date}
     }
 }
+export function change(){
+    return {type: 'aa'};
+}

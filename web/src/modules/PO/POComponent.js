@@ -5,7 +5,7 @@ import { Button } from 'element-react';
 import { Select } from 'element-react';
 import { Input } from 'element-react';
 import { Table} from 'element-react';
-
+import { Link } from 'react-router';
 import './PO.scss';
 
 class POComponent extends Component{
@@ -161,14 +161,16 @@ render() {
         <Button nativeType="submit" type="primary">单品查询</Button>
       </Form.Item>
       <Form.Item>
-        <Button nativeType="submit" >编辑</Button>
+        <Button nativeType="submit" type="primary"><Link to="/Qcompile">编辑 </Link></Button>
       </Form.Item>
      
     </Form>
- 
+
     </div>
 
+
   <div className="main">
+
 
    <Table className="main2"
         style={{width: '100%', marginTop: 20}}
