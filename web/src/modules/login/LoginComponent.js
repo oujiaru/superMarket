@@ -1,8 +1,9 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import * as loginActions from './LoginAction'
-// import SpinnerComponent from '../spinner/SpinnerComponent'
-
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import * as loginActions from './LoginAction';
+import SpinnerComponent from '../spinner/SpinnerComponent';
+import {Input,Button} from 'element-react';
+import loginSCSS from './Login.scss';
 // @connect(
 //     state => ({
 //         loading: state.login.loading
@@ -34,19 +35,19 @@ class LoginComponent extends React.Component {
         return(
             <div className="login">
                 <ul>
-                    <li><input type="text" ref="username"/></li>
-                    <li><input type="text" ref="password"/></li>
-                    <li><input type="button" value="登录" onClick={this.loginHandler.bind(this)}/></li>
+                    <li>用户名:<Input  ref="username"/></li>
+                    <li>密码:<Input type="password"  ref="password"/></li>
+                    <li><Button type="primary" onClick={this.loginHandler.bind(this)}>登录</Button></li>
                     <li>{this.props.loading + ''}</li>
                 </ul>
-                 
+                 <SpinnerComponent show={this.props.loading}/>
             </div>
         )
     }
 }
 
 const mapStateToProps = state => ({
-    loading: state.login.loading,
+    loading: state.login.loading
 })
 export default connect(mapStateToProps, loginActions)(LoginComponent)
 // export default LoginComponent

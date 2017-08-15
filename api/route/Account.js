@@ -15,10 +15,15 @@ module.exports = {
             saveUninitialized: true,
         }))
 
-        app.post('/login', urlencodeParser, function(reqeust, response){
+        app.post('/login', urlencodeParser, function(request, response){
             //请求数据库，如果正确，则记录登陆状态
-            request.session.name = request.body.username;
+            
+            console.log(request.session.name,request.body.username)
+            request.session.name = request.body.username
+
             response.send({state: true});
+            
+            
         })
 
         app.post("/register", function(request, response){})
