@@ -15,13 +15,7 @@ function LinkMysql(){
 
 module.exports = {
 	add: function(list, data, callback){
-		var connection = mysql.createConnection({
-		  host     : 'localhost',
-		  user     : 'root',
-		  password : '',
-		  database : database
-		});
-		connection.connect();
+		LinkMysql();
 		var arr = [], item = '', str = '';
 		for(var key in data){
 			arr.push(data[key]);
@@ -47,13 +41,7 @@ module.exports = {
 		connection.end();
 	},
 	delete: function(list, data, callback){
-		var connection = mysql.createConnection({
-				host     : 'localhost',
-				user     : 'root',
-				password : '',
-				database : database
-			});
-		connection.connect();
+		LinkMysql();
 		var id = Object.keys(data);
 		console.log(id);
 		var delSql = 'DELETE FROM ' + ' ' + list + ' where '+ ' ' + id +'=' +data[id];
@@ -68,13 +56,7 @@ module.exports = {
 		connection.end();
 	},
 	update: function(list, data, callback){
-		var connection = mysql.createConnection({
-		  host     : 'localhost',
-		  user     : 'root',
-		  password : '',
-		  database : database
-		});
-		connection.connect();
+		LinkMysql();
 		var arr = [], item = '', id = '';
 		for(var key in data){
 			arr.push(data[key]);
@@ -102,13 +84,7 @@ module.exports = {
 
 	query: function(data, callback){
 
-		var connection = mysql.createConnection({
-		  host     : 'localhost',
-		  user     : 'root',
-		  password : '',
-		  database : database
-		});
-		connection.connect();
+		LinkMysql();
 
 		var  sql = 'SELECT * FROM xiao';
 		connection.query(sql,function (err, result) {

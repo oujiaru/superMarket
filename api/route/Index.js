@@ -1,10 +1,9 @@
 var path = require('path');
 var Account = require('./Account');
-// var Product = require('./Product');
 var PurcharsOrder = require('./PurcharsOrder2');
 
 var Qcompile = require('./Qcompile');
-var Product = require('./Product')
+var Pos = require('./Pos')
 
 module.exports = {
     Register: function(express){
@@ -24,7 +23,7 @@ module.exports = {
         // Product.Register(app);
 
         Qcompile.Register(app);
-        Product.Register(app);
+        Pos.Register(app);
         PurcharsOrder.Register(app);
         app.listen(999);
     }
