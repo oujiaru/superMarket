@@ -1,8 +1,8 @@
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
-
-var urlencodeParser = bodyParser.urlencoded();
+var sql = require('../modules/AccountSql');
+var urlencodeParser = bodyParser.urlencoded({ extended: false });
 module.exports = {
     Register: function(app){
         //设置 session
@@ -17,14 +17,21 @@ module.exports = {
 
         app.post('/login', urlencodeParser, function(request, response){
             //请求数据库，如果正确，则记录登陆状态
-            
-            console.log(request.session.name,request.body.username)
-            request.session.name = request.body.username
+            sql.query('user',request.body, function(res){
+                if(res.length>0){
+                    response.send({status: true,data:res});
+                }else{
+                    response.send({status: false,data:res});
+                }
 
-            response.send({state: true});
+               
+            });
             
+            // request.session.name = request.body.username
+
+            // response.send({state: true});
             
-        })
+        });
 
         app.post("/register", function(request, response){})
 

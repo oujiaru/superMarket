@@ -82,7 +82,7 @@ module.exports = {
 		});
 		connection.end();
 	},
-	query: function(callback){
+	query: function(tableName,request,callback){
 		var connection = mysql.createConnection({
 		  host     : 'localhost',
 		  user     : 'root',
@@ -90,16 +90,19 @@ module.exports = {
 		  database : database
 		});
 		connection.connect();
-		var  sql = 'SELECT * FROM goods';
+		console.log(request);
+		var  sql = 'SELECT * FROM user';
 		connection.query(sql,function (err, result) {
+			console.log(result);
 		   if(!err){
 			    if(callback && typeof callback == 'function'){
 			    	callback(result);
 			    }
 		    }       
 		});
+		connection.end();
 	}
-}
+};
 // select
 // 	SQL_CALC_FOUND_ROWS
 // 	b.IndexID,
@@ -142,4 +145,3 @@ module.exports = {
 //         console.log('与mysql数据库建立连接失败');  
 //     }else{  
 //         console.log('与mysql数据库建立连接成功');  
-/

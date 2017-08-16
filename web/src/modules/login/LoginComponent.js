@@ -4,6 +4,7 @@ import * as loginActions from './LoginAction';
 import SpinnerComponent from '../spinner/SpinnerComponent';
 import {Input,Button} from 'element-react';
 import loginSCSS from './Login.scss';
+
 // @connect(
 //     state => ({
 //         loading: state.login.loading
@@ -35,8 +36,9 @@ class LoginComponent extends React.Component {
         return(
             <div className="login">
                 <ul>
-                    <li>用户名:<Input  ref="username"/></li>
-                    <li>密码:<Input type="password"  ref="password"/></li>
+                    <li><h3>Login</h3></li>
+                    <li><span>用户名 :</span><input  ref="username"/></li>
+                    <li><span>密码 :</span><input type="password"  ref="password"/></li>
                     <li><Button type="primary" onClick={this.loginHandler.bind(this)}>登录</Button></li>
                     <li>{this.props.loading + ''}</li>
                 </ul>
@@ -47,7 +49,8 @@ class LoginComponent extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    loading: state.login.loading
+    loading: state.login.loading,
+    data:state.login.data
 })
 export default connect(mapStateToProps, loginActions)(LoginComponent)
 // export default LoginComponent
