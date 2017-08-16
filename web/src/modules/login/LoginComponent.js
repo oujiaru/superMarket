@@ -32,6 +32,7 @@ class LoginComponent extends React.Component {
     }
 
     render(){
+        console.log(this)
         return(
             <div className="login">
                 <ul>

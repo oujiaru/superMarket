@@ -1,6 +1,6 @@
 import * as constants from '../../../redux/commonConstant'
 
-export function login(aa){
+export function Search(aa){
 
     return {
         types: [constants.REQUEST, constants.SUCCESS, constants.FAILURE],

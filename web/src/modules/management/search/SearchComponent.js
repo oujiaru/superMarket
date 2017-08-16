@@ -10,13 +10,13 @@ import * as SearchActions from './SearchAction'
 
 
 
-
+var aa='';
 
 class SearchComponent extends Component {
  constructor(props) {
   super(props);
 
- 
+
   this.state = {
     columns: [
       {
@@ -74,6 +74,7 @@ class SearchComponent extends Component {
         width: 120
       }
     ],
+
     data: [{
       id: '1',
       goodscode: '6936928590207',
@@ -243,16 +244,21 @@ class SearchComponent extends Component {
       time:'2017-08-15 16:50:35',
 
     }]
+      
   }
 }
 
  loginHandler(){
-        this.props.login(this.refs.goodscode.value)
+        this.props.Sea(this.refs.goodscode.value)
        // location.reload()
     }
 
 
 render() {
+  
+   aa = this.state.data
+   console.log(this)
+    console.log(aa)
   return (
     <div className="search">
      <p>商品条形码/货号/名称</p>
@@ -277,6 +283,7 @@ render() {
 
 const mapStateToProps = state => ({
     loading: state.login.loading,
+
 })
 export default connect(mapStateToProps, SearchActions)(SearchComponent)
 
