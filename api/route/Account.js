@@ -1,7 +1,7 @@
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
-var sql = require('../modules/AccountSql');
+var sql = require('../mysql');
 var urlencodeParser = bodyParser.urlencoded({ extended: false });
 module.exports = {
     Register: function(app){
@@ -17,8 +17,9 @@ module.exports = {
 
         app.post('/login', urlencodeParser, function(request, response){
             //请求数据库，如果正确，则记录登陆状态
-            console.log(request.body)
-            sql.query('user',request.body, function(res){
+            console.log(request.body);
+            sql.user(request.body, function(res){
+
                 console.log(666)
                 if(res.length>0){
                     response.send({status: true,data:res});

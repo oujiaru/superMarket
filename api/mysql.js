@@ -1,7 +1,18 @@
 var mysql = require('mysql');
 
 //要操作的数据库
-var database = 'superma';
+var database = 'supermarket';
+function LinkMysql(){
+	connection = mysql.createConnection({
+	  host     : 'localhost',
+	  user     : 'root',
+	  password : '',
+	  database : database
+	});
+	connection.connect();
+}
+
+
 module.exports = {
 	add: function(list, data, callback){
 		var connection = mysql.createConnection({
@@ -20,15 +31,18 @@ module.exports = {
 		item = item.slice(0,-1);
 		str = str.slice(0,-1);
 		var  addSql = 'INSERT INTO' + ' ' + list + '(' + item + ') VALUES('+ str +')';
+		console.log('sql', list);
 		// var  addSqlParams = [data.Code, data.Name, data.Price, data.Unit, data.Type, data.Standard, data.SupplierID];
 		connection.query(addSql, arr, function (err, result) {
-			console.log(666)
+			// console.log(666)
 		    if(!err){
 			    if(callback && typeof callback == 'function'){
 			    	callback(result);
 
 			    }
-		    }          
+		    }else {
+		    	console.log('err', err);
+		    }
 		});
 		connection.end();
 	},
@@ -108,7 +122,35 @@ module.exports = {
 		    }       
 		});
 		connection.end();
+	},
+	queryCode: function(data, callback){
+		LinkMysql();
+		var  sql = 'SELECT * FROM goods WHERE Code = '+ data +'';
+		connection.query(sql,function (err, result) {
+		   if(!err){
+			    if(callback && typeof callback == 'function'){
+			    	callback(result);		    	
+			    }
+		    }       
+		});
+		connection.end();
+	},
+	user: function(data, callback){
+		LinkMysql();
+		console.log(data)
+		var name = data.username, psw = data.password;
+		var  sql = 'SELECT * FROM user WHERE username = '+"'" +name+ "'"+' AND password=' + "'"+psw +"'";
+		connection.query(sql,function (err, result) {
+		   if(!err){
+			    if(callback && typeof callback == 'function'){
+			    	callback(result);	
+			    }
+		    }       
+		});
+		connection.end();
 	}
+
+
 };
 // select
 // 	SQL_CALC_FOUND_ROWS

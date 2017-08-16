@@ -18,7 +18,7 @@ module.exports = {
             saveUninitialized: true,
         }))
 
-        app.post('/addList',urlencodedParser, function(request, response){
+        app.post('/addQcomoile',urlencodedParser, function(request, response){
             //请求数据库
         
             console.log(request.body);

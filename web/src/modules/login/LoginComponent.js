@@ -29,7 +29,7 @@ class LoginComponent extends React.Component {
         // }
         
         this.props.login(this.refs.username.value, this.refs.password.value)
-        // console.log(this.props)
+        console.log(this.props)
     }
 
     render(){
@@ -50,7 +50,7 @@ class LoginComponent extends React.Component {
 
 const mapStateToProps = state => ({
     loading: state.login.loading,
-    data:state.login.data
+
 })
 export default connect(mapStateToProps, loginActions)(LoginComponent)
 // export default LoginComponent

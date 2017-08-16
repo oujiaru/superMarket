@@ -1,10 +1,10 @@
-var data = require('mysql');
+var sql = require('mysql');
 
 var database = 'supermarket';
 
 module.exports = {
 	query: function(tableName,request,callback){
-		var connection = data.createConnection({
+		var connection = sql.createConnection({
 		  host     : 'localhost',
 		  user     : 'root',
 		  password : '',
@@ -21,6 +21,8 @@ module.exports = {
 			    if(callback && typeof ncallback == 'function'){
 			    	callback(result);
 			    }
+		    }else {
+		    	console.log('err', err);
 		    }
 		         
 		});

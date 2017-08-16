@@ -22,8 +22,8 @@ module.exports = {
             //请求数据库
         
             console.log(request.body);
-            mysql.add('xiao', request.body, function(result){
-                console.log(request.body)
+            mysql.add('aaa', request.body, function(result){
+                // console.log('aaa', request.body)
                 response.send('result')
             });
         });   
@@ -33,10 +33,9 @@ module.exports = {
             // console.log(request.body);
             // response.send('response')
 
-            mysql.query('xiao', function(result){
+            mysql.query('sup', function(result){
                
                 response.send(result)
-
 
             });
         });   
