@@ -138,7 +138,7 @@ onChange(key, value) {
 
 render() {
   return (
-  <div className="box">
+  <div>
     <div className="top">
 
     <Form inline={true} model={this.state.form} onSubmit={this.onSubmit.bind(this)} className="demo-form-inline">
@@ -201,7 +201,6 @@ render() {
       />
    </div>
 </div> 
-
   )
 }
 }

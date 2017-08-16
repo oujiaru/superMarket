@@ -1,6 +1,4 @@
-.box{
-	width:100%;
-}
+
 .top{
 	background:#ccc;
 	text-align:center;
@@ -13,7 +11,7 @@ Form{
 
 .main,.main2{
 	background:#fff;
-
+	min-width:0px;
 	width:100%;
 
 }

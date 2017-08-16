@@ -24,7 +24,7 @@ class EntryComponent extends Component {
             this.refs.menberprice.value,
             this.refs.goodsmodel.value,
         )
-       // location.reload()
+       console.log(666)
     }
     render(){
         return(

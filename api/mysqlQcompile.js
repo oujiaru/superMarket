@@ -22,11 +22,10 @@ module.exports = {
 		var  addSql = 'INSERT INTO' + ' ' + list + '(' + item + ') VALUES('+ str +')';
 		// var  addSqlParams = [data.Code, data.Name, data.Price, data.Unit, data.Type, data.Standard, data.SupplierID];
 		connection.query(addSql, arr, function (err, result) {
-			console.log(666)
+			console.log(777)
 		    if(!err){
 			    if(callback && typeof callback == 'function'){
 			    	callback(result);
-
 			    }
 		    }          
 		});

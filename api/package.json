@@ -8,15 +8,16 @@
     "build": "webpack --progress --colors",
     "start": "node server"
   },
-  "devDependencies": {},
-  "author": "DK.Lan",
+  "devDependencies": {
+    "mysql": "^2.14.1"
+  },
+  "author": "Rao",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.17.2",
     "cookie-parser": "^1.4.3",
     "express": "^4.15.4",
     "express-session": "^1.15.5",
-    "mongodb": "^2.2.31",
-    "mysql": "^2.14.1"
+    "mongodb": "^2.2.31"
   }
 }

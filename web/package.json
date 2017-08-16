@@ -34,7 +34,7 @@
     "superagent": "^3.5.2",
     "url-loader": "^0.5.8",
     "webpack": "^2.2.0",
-    "webpack-dev-server": "^2.2.0",
+    "webpack-dev-server": "^2.2.0"
   },
   "author": "DK.Lan",
   "license": "ISC",

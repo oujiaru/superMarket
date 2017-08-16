@@ -10,20 +10,17 @@ module.exports = {
         app.use(session({
             secret: '12345',//用来对session数据进行加密的字符串.这个属性值为必须指定的属性
             name: 'testapp',   //这里的name值得是cookie的name，默认cookie的name是：connect.sid
-            cookie: {maxAge: 80000 },  //设置maxAge是80000ms，即80s后session和相应的cookie失效过期
+            cookie: {maxAge: 8000 },  //设置maxAge是80000ms，即80s后session和相应的cookie失效过期
             resave: false,
             saveUninitialized: true,
         }))
 
         app.post('/login', urlencodeParser, function(request, response){
             //请求数据库，如果正确，则记录登陆状态
-            
-            console.log(request.session.name,request.body.username)
-            request.session.name = request.body.username
-
+            //request.body
+            // request.session.name = request.body.username;
+            // console.log(request.body)
             response.send({state: true});
-            
-            
         })
 
         app.post("/register", function(request, response){})
@@ -38,8 +35,11 @@ module.exports = {
         })
 
         app.get('/getproduct', function(request, response){
-            if(!request.session.usernmae){
+            console.log(request.body)
+            if(!request.session.username){
                 response.send({statue: false, message: '请先登陆', flag: 0})
+            }else{
+                response.send({statue: true, message: '已登陆'})
             }
         })
     }
