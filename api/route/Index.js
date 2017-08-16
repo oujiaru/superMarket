@@ -2,6 +2,10 @@ var path = require('path');
 var Account = require('./Account');
 // var Product = require('./Product');
 var PurcharsOrder = require('./PurcharsOrder2');
+<<<<<<< HEAD
+var Qcompile = require('./Qcompile');
+=======
+>>>>>>> 33bd1c43653bc52792f147b18ff0ef6992333c39
 
 module.exports = {
     Register: function(express){
@@ -19,7 +23,11 @@ module.exports = {
 		});
         Account.Register(app);
         // Product.Register(app);
+<<<<<<< HEAD
+        Qcompile.Register(app);
+=======
         
+>>>>>>> 33bd1c43653bc52792f147b18ff0ef6992333c39
         PurcharsOrder.Register(app);
         app.listen(999);
     }

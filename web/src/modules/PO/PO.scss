@@ -1,15 +1,17 @@
+
 .top{
 	background:#ccc;
 	text-align:center;
-	min-width:900px;
+	
 }
+
 Form{
 	padding-top:20px;
 }
 
 .main,.main2{
 	background:#fff;
-	min-width:900px;
+	min-width:0px;
 	width:100%;
 
 }
@@ -24,17 +26,12 @@ Form{
 		td{border:1px solid #ddd;
 			height:32px;
 			text-align: center;
-			width: 121px;
+			
 		}
 
 		th{border:1px solid #ddd;
 			height:32px;
 			text-align: center;
-			width: 123px;
+		
 		}
-
-.el-table__header,.el-table__body-wrapper,.el-table__body,.main2{
-	width:100% !important;
-	min-width:900px;
-}
 

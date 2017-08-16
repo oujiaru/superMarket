@@ -1,12 +1,14 @@
 import common from '../../libs/common/common';
 
-export default function push(_batch,_Suppliers, _barcode,_poid, _shopname,_purchasingcost,_price,_number,_date){
+export function login(aa){
+
     return {
-        type: '',
-        url: common.baseUrl + 'push',
-        data: {_batch,_Suppliers, _barcode,_poid, _shopname,_purchasingcost,_price,_number,_date}
+        types: [constants.REQUEST, constants.SUCCESS, constants.FAILURE],
+        path: 'cha1',
+        method: 'post',
+        query: {aa}
     }
-}
-export function change(){
-    return {type: 'aa'};
+    // return {
+    // 	type: constants.REQUEST
+    // }
 }

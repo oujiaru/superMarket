@@ -26,6 +26,7 @@ const HttpClient = {
                     resolve(res.body);
                 }
             });
+            
     }),
 
     post: (path, formdata, query) => new Promise((resolve, reject) => {

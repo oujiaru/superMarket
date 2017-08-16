@@ -62,7 +62,11 @@ class AppComponent extends Component{
 										{
 											item.box.map(function(res,idx){
 												
+<<<<<<< HEAD
 												return <li key={idx}><Link to={res.path}>{res.name}</Link></li>
+=======
+												return <li key={idx}><Link to="/PO">{res}</Link></li>
+>>>>>>> 3317f705e246fd7892f111de1ca57182f310e82c
 											})
 										}
 									</ul>
