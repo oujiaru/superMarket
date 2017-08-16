@@ -9,7 +9,7 @@ import POComponent from './modules/PO/POComponent'
 import QuoteComponent from './modules/Quote/QuoteComponent'
 import QcompileComponent from './modules/Qcompile/QcompileComponent'
 
-export default (
+export default [
 	<Route path="/" component={AppComponent}>
 		<Route path="/login" component={LoginComponent}/>,
 		 <Route path="/management/entry" component={EntryComponent} />,
@@ -19,7 +19,7 @@ export default (
 	<Route path="/Qcompile" component={QcompileComponent} />
 	</Route>
 	
-)
+]
 
 		
 
