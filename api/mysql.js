@@ -150,8 +150,7 @@ module.exports = {
 //         console.log('与mysql数据库建立连接失败');  
 //     }else{  
 //         console.log('与mysql数据库建立连接成功');  
-<<<<<<< HEAD
-=======
+
 //         connection.query(querySql, function(err,result){  
 //             if(err){  
 //             	console.log(err)
@@ -165,4 +164,4 @@ module.exports = {
 //     }  
 // })  
 // connection.end();
->>>>>>> 78f02a5c56716bbdd42d64f0f41f92ee7f6e8218
+

@@ -1,10 +1,10 @@
-var mysql = require('mysql');
+var data = require('mysql');
 
 var database = 'supermarket';
 
 module.exports = {
 	query: function(tableName,request,callback){
-		var connection = mysql.createConnection({
+		var connection = data.createConnection({
 		  host     : 'localhost',
 		  user     : 'root',
 		  password : '',

@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import * as loginActions from './LoginAction';
+import * as regActions from './regAction';
 import SpinnerComponent from '../spinner/SpinnerComponent';
 import {Input,Button} from 'element-react';
-import loginSCSS from './Login.scss';
+import regSCSS from './reg.scss';
 
 // @connect(
 //     state => ({
@@ -12,12 +12,12 @@ import loginSCSS from './Login.scss';
 //     loginActions
 // )
 
-class LoginComponent extends React.Component {
+class regComponent extends React.Component {
     constructor(props){
         super(props)
     }
 
-    loginHandler(){
+    regHandler(){
         // console.log(loginActions)
         // this.router.push('register')
         // if(!this.refs.username){
@@ -28,18 +28,18 @@ class LoginComponent extends React.Component {
         //     return 
         // }
         
-        this.props.login(this.refs.username.value, this.refs.password.value)
-        // console.log(this.props)
+        this.props.reg(this.refs.username.value, this.refs.password.value)
+        console.log(this.props)
     }
 
     render(){
         return(
-            <div className="login">
+            <div className="reg">
                 <ul>
-                    <li><h3>Login</h3></li>
+                    <li><h3>Register</h3></li>
                     <li><span>用户名 :</span><input  ref="username"/></li>
                     <li><span>密码 :</span><input type="password"  ref="password"/></li>
-                    <li><Button type="primary" onClick={this.loginHandler.bind(this)}>登录</Button></li>
+                    <li><Button type="primary" onClick={this.regHandler.bind(this)}>注册</Button></li>
                     <li>{this.props.loading + ''}</li>
                 </ul>
                  <SpinnerComponent show={this.props.loading}/>
@@ -50,7 +50,6 @@ class LoginComponent extends React.Component {
 
 const mapStateToProps = state => ({
     loading: state.login.loading,
-    data:state.login.data
+    data:state.reg.data
 })
-export default connect(mapStateToProps, loginActions)(LoginComponent)
-// export default LoginComponent
+export default connect(mapStateToProps, regActions)(regComponent)

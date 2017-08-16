@@ -17,7 +17,9 @@ module.exports = {
 
         app.post('/login', urlencodeParser, function(request, response){
             //请求数据库，如果正确，则记录登陆状态
+            console.log(request.body)
             sql.query('user',request.body, function(res){
+                console.log(666)
                 if(res.length>0){
                     response.send({status: true,data:res});
                 }else{
