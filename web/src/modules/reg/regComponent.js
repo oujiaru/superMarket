@@ -49,7 +49,7 @@ class regComponent extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    loading: state.reg.loading,
+    loading: state.login.loading,
     data:state.reg.data
 })
 export default connect(mapStateToProps, regActions)(regComponent)

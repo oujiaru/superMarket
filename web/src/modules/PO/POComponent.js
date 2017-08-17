@@ -28,7 +28,7 @@ class POComponent extends Component{
       },
       {
         label: "供货商",
-        prop: "name",
+        prop: "",
 
       },
       {
@@ -38,12 +38,12 @@ class POComponent extends Component{
       },
       {
         label: "规格",
-        prop: "province",
+        prop: "",
 
       },
       {
         label: "进价",
-        prop: "zip",
+        prop: "",
 
       },
       {
@@ -58,12 +58,10 @@ class POComponent extends Component{
       },
       {
         label: "入库日期",
-        prop: "date",
+        prop: "",
 
       },
-      
-    ],
-        data: [{
+      data: [{
       date: '2016-05-02',
       name: '王小虎',
       province: '上海',
@@ -120,6 +118,8 @@ class POComponent extends Component{
       address: '上海市普陀区金沙江路 1518 弄',
       zip: 200333
     }]
+      
+    ]
    
   };
 }
@@ -135,19 +135,23 @@ onChange(key, value) {
     form: Object.assign(this.state.form, { [key]: value })
   });
 }
+ loginHandler(){
+        this.props.login(this.refs.goodscode.value)
+        // this.props.login(this.refs.goodscode.value)
+       // location.reload()
+    }
 
 render() {
   return (
   <div id="PO">
-    <div className="top">
+    <div className="top1">
 
     <Form inline={true} model={this.state.form} onSubmit={this.onSubmit.bind(this)} className="demo-form-inline">
       <Form.Item>
-        <Input value={this.state.form.user1} placeholder="批次" onChange={this.onChange.bind(this, 'user1')}></Input>
+        <Input value={this.state.form.user1} placeholder="批次"  onChange={this.onChange.bind(this, 'user1')}></Input>
+        <Button nativeType="submit" type="primary"  onClick={this.loginHandler.bind(this)}>批次查询</Button>
       </Form.Item>
-    <Form.Item>
-        <Button nativeType="submit" type="primary">批次查询</Button>
-      </Form.Item>
+
       <Form.Item>
         <Select value={this.state.form.region} placeholder="查询供货商">
           <Select.Option label="区域一" value="shanghai"></Select.Option>
@@ -155,11 +159,9 @@ render() {
         </Select>
       </Form.Item>
     <Form.Item>
-        <Input value={this.state.form.user} placeholder="条码" onChange={this.onChange.bind(this, 'user')}></Input>
-      </Form.Item>
-      <Form.Item>
-        <Button nativeType="submit" type="primary">单品查询</Button>
-      </Form.Item>
+        <Input value={this.state.form.user} placeholder="条码" ref="goodscode" onChange={this.onChange.bind(this, 'user')}></Input>
+        <Button nativeType="submit" type="primary" onClick={this.loginHandler.bind(this)}>单品查询</Button>
+      </Form.Item> 
       <Form.Item>
         <Button nativeType="submit" type="primary"><Link to="/Qcompile">编辑 </Link></Button>
       </Form.Item>
@@ -169,40 +171,22 @@ render() {
     </div>
 
 
-  <div className="main">
 
-
-   <Table className="main2"
-        style={{width: '100%', marginTop: 20}}
-        height={450}
-        showSummary={true}
-        columns={this.state.columns}
-        data={this.state.data}
-        sumText='总价'
-        getSummaries={(columns, data)=>{
-          const dataList = [];
-          for(var i=0; i < columns.length; i++){
-            let total = 0;
-            for(let j=0; j < data.length; j++){
-              let value = data[j][columns[i]['property']];
-            
-              if(isNaN(value)){
-                total = 'N/A'
-                break;
-              }else{
-                total += parseFloat(value);
-              }
-            }
-            dataList[i] = isNaN(total) ? total : total +'元';
-          }
-          return dataList;
-        }}
-        border={true}
-      />
-   </div>
+ <Table
+      style={{width: '100%'}}
+      columns={this.state.columns}
+      data={this.state.data}
+      border={true}
+      maxHeight={400}
+    />
+ 
 </div> 
+
   )
 }
 }
+const mapStateToProps = state => ({
+    loading: state.login.loading,
+})
 
 export default POComponent;

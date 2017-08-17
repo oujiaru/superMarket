@@ -17,8 +17,8 @@ var dataSet = [
 },
 {type:'采购订单',
     box:[
-    {name:'采购商品',path:'/Quote'},
-    {name:'查询',path:'/PO'},
+    {name:'采购商品',path:'/PO'},
+    {name:'查询',path:'/Quote'},
     {name:'入库',path:'/Qcompile'}
     ]
 },
@@ -41,6 +41,7 @@ class AppComponent extends Component{
 	constructor(props){
         super(props)
     }
+
     componentWillMount(){
         
     }
@@ -51,6 +52,7 @@ class AppComponent extends Component{
     componentDidUpdate(){
         console.log('更新后',this.props.data)
     }
+
 	change(e){
 		
 		e.target.nextElementSibling.style.display='block';
@@ -93,7 +95,7 @@ class AppComponent extends Component{
 
 }
 const mapStateToPorps = state =>({
-	data:state.login.data
+	title:state.title
 })
 
 

@@ -6,16 +6,14 @@ import Search from '../modules/management/Search/SearchReducer'
 import code from '../modules/POS/PosReducer'
 
 import {combineReducers} from 'redux'
-import reg from '../modules/reg/regReducer'
 
 const rootReducer = combineReducers({
     login,
     router,
-    code,
-    reg,
+
     Search,
 
-
+    code
 
 })
 

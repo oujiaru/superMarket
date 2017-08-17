@@ -25,7 +25,9 @@ export default [
 	<Route path="/login" component={LoginComponent}/>,
 	<Route path="/reg" component={regComponent}/>,
 	<Route path="/POS" component={PosComponent}/>
-	
+
 
 ]
+
+		
 
