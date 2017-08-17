@@ -1,7 +1,7 @@
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
-var sql = require('../mysql');
+var sql = require('../lumysql');
 var urlencodeParser = bodyParser.urlencoded({ extended: false });
 module.exports = {
     Register: function(app){

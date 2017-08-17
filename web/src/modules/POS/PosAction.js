@@ -11,3 +11,11 @@ export function code(code){
     // 	type: constants.REQUEST
     // }
 }
+export function genOrder(text){
+    return {
+        types: [constants.REQUEST, constants.SUCCESS, constants.FAILURE],
+        path: 'order',
+        method: 'post',
+        query: {text}
+    }
+}

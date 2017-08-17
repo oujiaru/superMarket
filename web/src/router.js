@@ -26,4 +26,6 @@ export default [
 	<Route path="/reg" component={regComponent}/>,
 	<Route path="/POS" component={PosComponent}/>
 	
+
 ]
+

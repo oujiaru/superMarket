@@ -143,6 +143,9 @@
 					font-weight: 800;
 					font-size: 24px;
 					width: 200px;
+					p{
+						margin-top:20px;
+					}
 					span{
 						margin-left: 10px;
 						padding: 5px 8px;
@@ -153,6 +156,10 @@
 					span:hover{
 						background-color: #f60;
 						color: white;
+					}
+					b{
+						display: inline-block;
+						width: 50px;
 					}
 				}
 			}
@@ -224,5 +231,4 @@
 			}
 		}
 	}
-
 }

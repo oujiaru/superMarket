@@ -2,16 +2,17 @@ var mysql = require('mysql');
 
 //要操作的数据库
 var database = 'supermarket';
-
 function LinkMysql(){
 	connection = mysql.createConnection({
-		host     : 'localhost',
-		user     : 'root',
-		password : '',
-		database : database
+	  host     : 'localhost',
+	  user     : 'root',
+	  password : '',
+	  database : database
 	});
 	connection.connect();
 }
+
+
 module.exports = {
 	add: function(list, data, callback){
 		LinkMysql();
@@ -24,19 +25,27 @@ module.exports = {
 		item = item.slice(0,-1);
 		str = str.slice(0,-1);
 		var  addSql = 'INSERT INTO' + ' ' + list + '(' + item + ') VALUES('+ str +')';
+		console.log('sql', list);
+		// var  addSqlParams = [data.Code, data.Name, data.Price, data.Unit, data.Type, data.Standard, data.SupplierID];
 		connection.query(addSql, arr, function (err, result) {
+			// console.log(666)
 		    if(!err){
 			    if(callback && typeof callback == 'function'){
 			    	callback(result);
+
 			    }
-		    }          
+		    }else {
+		    	console.log('err', err);
+		    }
 		});
 		connection.end();
 	},
 	delete: function(list, data, callback){
 		LinkMysql();
 		var id = Object.keys(data);
+		console.log(id);
 		var delSql = 'DELETE FROM ' + ' ' + list + ' where '+ ' ' + id +'=' +data[id];
+		console.log(delSql)
 		connection.query(delSql, function(err, result) {
 		    if(!err){
 			    if(callback && typeof callback == 'function'){
@@ -70,34 +79,69 @@ module.exports = {
 		});
 		connection.end();
 	},
-	queryCode: function(data, callback){
+
+	query: function(data,res, callback){
+
 		LinkMysql();
-		var  sql = 'SELECT * FROM goods WHERE Code = '+ data +'';
+
+		// var  sql = 'SELECT * FROM sup ';
+		var  sql = 'SELECT * FROM sup where id between '+(res.min-1)*res.max+' and '+res.max*res.min;
 		connection.query(sql,function (err, result) {
+			console.log(result)
+
 		   if(!err){
 			    if(callback && typeof callback == 'function'){
 			    	callback(result);
-			    	
+
 			    }
 		    }       
 		});
 		connection.end();
 	},
+
+	queryshou: function(data,res, callback){
+
+		var connection = mysql.createConnection({
+		  host     : 'localhost',
+		  user     : 'root',
+		  password : '',
+		  database : database
+		});
+		connection.connect();
+
+		// var  sql = 'SELECT * FROM sup ';
+		var  sql = 'select * from sup a where a.goodsName like'+ ''%'+res.zhi+'%'';
+		connection.query(sql,function (err, result) {
+			
+
+		   if(!err){
+			    if(callback && typeof callback == 'function'){
+			    	callback(result);
+			    }
+
+			}
+	
+		connection.end();
+		})
+	},
 	user: function(data, callback){
 		LinkMysql();
-		var name = data.name, psw = data.psw;
-		var  sql = 'SELECT * FROM users WHERE name = '+"'" +name+ "'"+' AND psw=' + "'"+psw +"'";
-		console.log(sql);
+		console.log(data)
+		var name = data.username, psw = data.password;
+		var  sql = 'SELECT * FROM user WHERE username = '+"'" +name+ "'"+' AND password=' + "'"+psw +"'";
 		connection.query(sql,function (err, result) {
 		   if(!err){
 			    if(callback && typeof callback == 'function'){
 			    	callback(result);	
+
 			    }
 		    }       
 		});
 		connection.end();
 	}
-}
+
+
+};
 // select
 // 	SQL_CALC_FOUND_ROWS
 // 	b.IndexID,
@@ -140,6 +184,7 @@ module.exports = {
 //         console.log('与mysql数据库建立连接失败');  
 //     }else{  
 //         console.log('与mysql数据库建立连接成功');  
+
 //         connection.query(querySql, function(err,result){  
 //             if(err){  
 //             	console.log(err)
@@ -153,3 +198,4 @@ module.exports = {
 //     }  
 // })  
 // connection.end();
+
