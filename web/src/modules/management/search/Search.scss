@@ -4,4 +4,26 @@
 	.smore{background-color: #F1F1F1;}
 	.el-pagination{margin-left:420px;margin-top:10px;}
 	#butt{display:none;}
+	.el-button--text{display:none;}
+		.change{width:300px;border:1px solid #ccc;margin:0;padding: 0;
+					display: none;
+					position: absolute;
+					left: 600px;
+					bottom:100px;
+
+		}
+			.change li{height: 40px;line-height: 40px;list-style: none;margin:0;padding: 0;
+				border-bottom: 1px solid #ccc;padding-left:20px;font-weight: bold;font-style: 16px;
+				background-color: #000066;color:#CCCCCC;
+
+			}
+			.change li input{height:40px;width: 200px;
+				padding-left:20px;box-sizing:border-box;
+
+				float: right;margin:0;display: block;border:0;outline:none;}
+			.change .lastli{background-color: #FFFFFF;color:#CCCCCC;}
+			.change .lastli span{font-style:20px;float:left;margin-left:80px;}
+
+
+
 }

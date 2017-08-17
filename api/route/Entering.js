@@ -23,7 +23,7 @@ module.exports = {
         
             console.log(request.body);
 
-            mysql.add('sup', request.body, function(result){
+            mysql.add('supp', request.body, function(result){
                 console.log(request.body)
             });
 
@@ -35,7 +35,7 @@ module.exports = {
             // console.log(request.body);
             // response.send('response')
             console.log(request.body)
-            mysql.query('sup',request.body, function(result){
+            mysql.query('supp',request.body, function(result){
               
                 response.send(result)
 
@@ -43,13 +43,28 @@ module.exports = {
 
             });
         }); 
-        app.post('/shousuo',urlencodedParser, function(request, response){
+        app.post('/num',urlencodedParser, function(request, response){
             //请求数据库
         
             // console.log(request.body);
             // response.send('response')
             console.log(request.body)
-            mysql.queryshou('sup',request.body, function(result){
+            mysql.querynum('supp',request.body, function(result){
+              
+                response.send(result)
+
+
+
+            });
+        }); 
+      
+        app.post('/Shousuo',urlencodedParser, function(request, response){
+            //请求数据库
+        
+            // console.log(request.body);
+            // response.send('response')
+            console.log(request.body)
+            mysql.queryshou('supp',request.body, function(result){
                     console.log(11)
                     response.send(result)
 

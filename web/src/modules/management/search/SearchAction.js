@@ -11,6 +11,15 @@ export function Search(min,max){
         query: {min,max}
     }
 };
+export function num(){
+    
+    return {
+        types: [constants.SEARCH_NUM_REQUEST, constants.SEARCH_NUM_SUCCESS, constants.SEARCH_NUM_FAIL],
+        path: 'num',
+        method: 'post',
+        query: {}
+    }
+};
 export function Shousuo(zhi){
 
     return {

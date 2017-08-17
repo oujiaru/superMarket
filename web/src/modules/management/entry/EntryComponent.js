@@ -2,8 +2,9 @@
 import './Entry.scss'
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import { Input } from 'element-react';
+import { Input,Button ,MessageBox} from 'element-react';
 import * as EntryActions from './EntryAction'
+import $ from '../jquery-3.2.1'
 
 
 
@@ -15,6 +16,20 @@ class EntryComponent extends Component {
         super(props)
              
     }
+
+    onClick() {
+        MessageBox.msgbox({
+        title: '提示',
+        message: '商品录入成功',
+        showCancelButton: true
+        }).then(action => {
+        Message({
+          type: 'info',
+          message: 'action: ' + action
+        });
+        })
+    }
+
 
     loginHandler(){
 
@@ -28,6 +43,10 @@ class EntryComponent extends Component {
             this.refs.menberprice.value,
             this.refs.goodsmodel.value,
         )
+        $('input').val('')
+
+        this.onClick()
+
 
        // location.reload()
 
@@ -59,6 +78,7 @@ class EntryComponent extends Component {
                    
                 </ul>
                  <button onClick={this.loginHandler.bind(this)} id="ru">入库</button>
+                 <Button type="text" id = "ying"  onClick={this.onClick.bind(this)}>点击打开 Message Box</Button>
             </div>
         )
     }
