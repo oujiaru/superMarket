@@ -9,8 +9,8 @@ export default function(state = {loading: false}, action){
     let reState = JSON.parse(JSON.stringify(state))
     switch(action.type){
         case types.REQUEST:
-            reState.loading = true
-            break
+            reState.loading = true;
+            break;
         case types.SUCCESS:
         	if(reState.data){
         		let aa = 0;
@@ -28,24 +28,25 @@ export default function(state = {loading: false}, action){
     				reState.data.push(action.body[0]);
         		}
         	}else{
-        		reState.data = action.body
+        		reState.data = action.body;
         		reState.data[0].qty = 1;
         		reState.data[0].total = action.body[0].Price;
         	}  
-        	let  TotaPrice = 0,Qty = 0;
-			for(var i = 0 ,len = reState.data.length; i < len; i++){
+        	let TotaPrice = 0,Qty = 0;
+			for(let i = 0 ,len = reState.data.length; i < len; i++){
 				Qty += reState.data[i].qty;
 				TotaPrice += reState.data[i].Price * reState.data[i].qty;
 			}
 			reState.data[0].Qty = Qty;
 			reState.data[0].TotaPrice = TotaPrice;
-            reState.lastFetched = action.lastFetched
+            reState.lastFetched = action.lastFetched;
             reState.loading = false;
-            break
+            break;
         case types.FAILURE:
             reState.error = action.error
-            reState.loading = false
-            break
+            reState.loading = false;
+            break;
     }
     return reState;
 }
+
