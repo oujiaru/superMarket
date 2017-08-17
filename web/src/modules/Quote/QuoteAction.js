@@ -1,17 +1,11 @@
-import common from '../../libs/common/common';
-import jquery from '../../libs/jquery/jquery-3.2.1';
+import * as constants from './QuoteConstant';
 
-export default function push(_batch,_Suppliers, _barcode,_poid, _shopname,_purchasingcost,_price,_number,_date){
+export function Search(aa){
+
     return {
-        type: '',
-        url: common.baseUrl + 'push',
-        data: {_batch,_Suppliers, _barcode,_poid, _shopname,_purchasingcost,_price,_number,_date}
+        types: [constants.Quote_REQUEST, constants.Quote_SUCCESS, constants.Quote_FAIL],
+        path: 'cha1',
+        method: 'post',
+        query: {aa:aa}
     }
-}
-// export default function remove(){
-//     return {
-//         type: '',
-//         url: common.baseUrl + 'push',
-//         data:
-//     }
-// }
+};

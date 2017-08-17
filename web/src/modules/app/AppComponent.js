@@ -17,8 +17,8 @@ var dataSet = [
 },
 {type:'采购订单',
     box:[
-    {name:'采购商品',path:'/Quote'},
-    {name:'查询',path:'/PO'},
+    {name:'采购商品',path:'/PO'},
+    {name:'查询',path:'/Quote'},
     {name:'入库',path:'/Qcompile'}
     ]
 },
@@ -40,13 +40,6 @@ var dataSet = [
 class AppComponent extends Component{
 	constructor(props){
         super(props)
-    }
-    componentDidUpdate(){
-        console.log('挂载后',this.props.data)
-
-    }
-    componentDidUpdate(){
-        console.log('更新后',this.props.data)
     }
 	change(e){
 		
@@ -90,7 +83,7 @@ class AppComponent extends Component{
 
 }
 const mapStateToPorps = state =>({
-	data:state.login.data
+	title:state.title
 })
 
 

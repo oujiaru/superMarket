@@ -1,7 +1,7 @@
 var mysql = require('mysql');
 
 //要操作的数据库
-var database = 'supermarket';
+var database = 'superma';
 
 function LinkMysql(){
 	connection = mysql.createConnection({
