@@ -1,3 +1,3 @@
-export function change(){
+export function login(){
     return {type: 'aa'};
 }

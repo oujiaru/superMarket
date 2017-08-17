@@ -19,18 +19,18 @@ module.exports = {
             //请求数据库，如果正确，则记录登陆状态
             console.log(request.body);
             sql.user(request.body, function(res){
-
+                request.session.name = request.body.username
                 console.log(666)
                 if(res.length>0){
-                    response.send({status: true,data:res});
+                    response.send({status: true,data:request.session.name});
                 }else{
-                    response.send({status: false,data:res});
+                    response.send({status: false,message:'用户名或密码错误'});
                 }
 
                
             });
             
-            // request.session.name = request.body.username
+            
 
             // response.send({state: true});
             
