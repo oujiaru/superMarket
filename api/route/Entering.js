@@ -22,8 +22,13 @@ module.exports = {
             //请求数据库
         
             console.log(request.body);
+
             mysql.add('sup', request.body, function(result){
                 console.log(request.body)
+
+            mysql.add('aaa', request.body, function(result){
+                // console.log('aaa', request.body)
+
                 response.send('result')
             });
         });   
@@ -38,6 +43,7 @@ module.exports = {
                 response.send(result)
 
 
+
             });
         }); 
         app.post('/shousuo',urlencodedParser, function(request, response){
@@ -48,8 +54,11 @@ module.exports = {
             console.log(request.body)
             mysql.queryshou('sup',request.body, function(result){
               console.log(11)
-                response.send(result)
 
+            mysql.query('sup', function(result){
+               
+
+                response.send(result)
 
             });
         });   

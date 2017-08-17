@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Table} from 'element-react' ;
 import {connect} from 'react-redux';
 import * as PosActions from './PosAction';
-
+import $ from './jquery-3.2.1 (1)';
 import './PosScss.scss';
 
 class PosComponent extends Component{
@@ -59,12 +59,31 @@ class PosComponent extends Component{
 	componentDidMount(){
 		document.onkeyup = function(e){
 			if(e.keyCode == 34){
-				// let  TotaPrice = 0,Qty = 0;
-				// for(var i = 0 ,len = this.props.data.length; i < len; i++){
-				// 	Qty += this.props.data[i].qty;
-				// 	TotaPrice += this.props.data[i].Price * this.props.data[i].qty;
-				// }
-				console.log(this.props.data)
+				var now1 = new Date();
+				//获取当前代码距离1970-1-1的时间
+
+				var year = now1.getFullYear();
+				var month = now1.getMonth()+1;
+				var day1 = now1.getDate();
+				// var week = now1.getDay();
+				var hours = now1.getHours();
+				var minutes = now1.getMinutes();
+				var seconds = now1.getSeconds();
+				var res = year+'年'+month+'月'+day1+'日'+' '+ hours+':'+minutes+':'+seconds;
+				console.log(res)
+				let str = `\n         饶荣超市收银系统\n*************************************\n商品名称           单价 数量 总价\n*************************************\n`;
+				let Data = this.props.data;
+				console.log(Data);
+				let Paid = $('.Paid-up').val();
+				let price = Paid - Data[0].TotaPrice;
+				for(var i = 0 ,len = Data.length; i < len; i++){
+					str += `\n${Data[i].Name}\n${Data[i].Code} ${Data[i].Price}元 ${Data[i].qty}${Data[i].Unit}  ${Data[i].Price*Data[i].qty}元\n`;
+				}
+				str += `\n商品数量: ${Data[0].Qty}\n总金额：${Data[0].TotaPrice} \n实收: ${Paid}元 \n找零: ${price}元\n收银员 饶荣 \n${res} \n *************************************\n\n\n.`
+				console.log(str);
+				$.post('http://10.3.134.78:81/print', {text:str},function(res){
+					console.log(res);
+				})
 			}
 		}.bind(this)
 	}
@@ -114,10 +133,10 @@ class PosComponent extends Component{
 	            		</div>
 	            		<div className="clearing">
 	            			<div className="lt">
-								<p>交来: <input type="text"/></p>
+								<p>交来: <input type="text" className="Paid-up"/></p>
 		            			<p>卡付: <span></span></p>
 		            			<p>其它: <span></span></p>
-		            			<p>找零: <span></span></p>
+		            			<p>找零: <span className="price"></span></p>
 	            			</div>
 	            			<div className="rt"><span>结算</span></div>
 	            		</div>

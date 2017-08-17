@@ -1,16 +1,21 @@
 var mysql = require('mysql');
 
 //要操作的数据库
-var database = 'superma';
+var database = 'supermarket';
+function LinkMysql(){
+	connection = mysql.createConnection({
+	  host     : 'localhost',
+	  user     : 'root',
+	  password : '',
+	  database : database
+	});
+	connection.connect();
+}
+
+
 module.exports = {
 	add: function(list, data, callback){
-		var connection = mysql.createConnection({
-		  host     : 'localhost',
-		  user     : 'root',
-		  password : '',
-		  database : database
-		});
-		connection.connect();
+		LinkMysql();
 		var arr = [], item = '', str = '';
 		for(var key in data){
 			arr.push(data[key]);
@@ -20,26 +25,23 @@ module.exports = {
 		item = item.slice(0,-1);
 		str = str.slice(0,-1);
 		var  addSql = 'INSERT INTO' + ' ' + list + '(' + item + ') VALUES('+ str +')';
+		console.log('sql', list);
 		// var  addSqlParams = [data.Code, data.Name, data.Price, data.Unit, data.Type, data.Standard, data.SupplierID];
 		connection.query(addSql, arr, function (err, result) {
-			console.log(666)
+			// console.log(666)
 		    if(!err){
 			    if(callback && typeof callback == 'function'){
 			    	callback(result);
 
 			    }
-		    }          
+		    }else {
+		    	console.log('err', err);
+		    }
 		});
 		connection.end();
 	},
 	delete: function(list, data, callback){
-		var connection = mysql.createConnection({
-				host     : 'localhost',
-				user     : 'root',
-				password : '',
-				database : database
-			});
-		connection.connect();
+		LinkMysql();
 		var id = Object.keys(data);
 		console.log(id);
 		var delSql = 'DELETE FROM ' + ' ' + list + ' where '+ ' ' + id +'=' +data[id];
@@ -54,13 +56,7 @@ module.exports = {
 		connection.end();
 	},
 	update: function(list, data, callback){
-		var connection = mysql.createConnection({
-		  host     : 'localhost',
-		  user     : 'root',
-		  password : '',
-		  database : database
-		});
-		connection.connect();
+		LinkMysql();
 		var arr = [], item = '', id = '';
 		for(var key in data){
 			arr.push(data[key]);
@@ -88,13 +84,7 @@ module.exports = {
 
 	query: function(data,res, callback){
 
-		var connection = mysql.createConnection({
-		  host     : 'localhost',
-		  user     : 'root',
-		  password : '',
-		  database : database
-		});
-		connection.connect();
+		LinkMysql();
 
 		// var  sql = 'SELECT * FROM sup ';
 		var  sql = 'SELECT * FROM sup where id between '+(res.min-1)*res.max+' and '+res.max*res.min;
@@ -110,6 +100,7 @@ module.exports = {
 		});
 		connection.end();
 	},
+
 	queryshou: function(data,res, callback){
 
 		var connection = mysql.createConnection({
@@ -129,11 +120,36 @@ module.exports = {
 			    if(callback && typeof callback == 'function'){
 			    	callback(result);
 
+
+	queryCode: function(data, callback){
+		LinkMysql();
+		var  sql = 'SELECT * FROM goods WHERE Code = '+ data +'';
+		connection.query(sql,function (err, result) {
+		   if(!err){
+			    if(callback && typeof callback == 'function'){
+			    	callback(result);		    	
+			    }
+		    }       
+		});
+		connection.end();
+	},
+	user: function(data, callback){
+		LinkMysql();
+		console.log(data)
+		var name = data.username, psw = data.password;
+		var  sql = 'SELECT * FROM user WHERE username = '+"'" +name+ "'"+' AND password=' + "'"+psw +"'";
+		connection.query(sql,function (err, result) {
+		   if(!err){
+			    if(callback && typeof callback == 'function'){
+			    	callback(result);	
+
 			    }
 		    }       
 		});
 		connection.end();
 	}
+
+
 };
 // select
 // 	SQL_CALC_FOUND_ROWS
