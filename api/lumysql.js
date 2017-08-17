@@ -85,7 +85,27 @@ module.exports = {
 		LinkMysql();
 
 		// var  sql = 'SELECT * FROM sup ';
-		var  sql = 'SELECT * FROM sup where id between '+(res.min-1)*res.max+' and '+res.max*res.min;
+		// var  sql = 'SELECT * FROM supp where indexid between '+(res.min-1)*res.max+' and '+res.max*res.min;
+		var sql = 'SELECT SQL_CALC_FOUND_ROWS * FROM supp where indexid between'+(res.min-1)*res.max+'and'+res.max*res.min+';SELECT FOUND_ROWS()';
+		connection.query(sql,function (err, result) {
+			console.log(result)
+
+		   if(!err){
+			    if(callback && typeof callback == 'function'){
+			    	callback(result);
+
+			    }
+		    }       
+		});
+		connection.end();
+	},
+	querynum: function(data,res, callback){
+
+		LinkMysql();
+
+		// var  sql = 'SELECT * FROM sup ';
+		// var  sql = 'SELECT * FROM supp where indexid between '+(res.min-1)*res.max+' and '+res.max*res.min;
+		var sql = 'SELECT * FROM supp';
 		connection.query(sql,function (err, result) {
 			console.log(result)
 
@@ -110,7 +130,7 @@ module.exports = {
 		connection.connect();
 
 		// var  sql = 'SELECT * FROM sup ';
-		var  sql = 'select * from sup a where a.goodsName like'+ ''%'+res.zhi+'%'';
+		var  sql = 'select  * from supp a where a.goodsName like'+ ''%'+res.zhi+'%'';
 		connection.query(sql,function (err, result) {
 			
 

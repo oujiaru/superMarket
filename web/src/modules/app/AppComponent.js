@@ -41,6 +41,9 @@ class AppComponent extends Component{
 	constructor(props){
         super(props)
     }
+    componentWillMount(){
+        
+    }
     componentDidUpdate(){
         console.log('挂载后',this.props.data)
 

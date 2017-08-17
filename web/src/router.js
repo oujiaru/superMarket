@@ -13,7 +13,7 @@ import QuoteComponent from './modules/Quote/QuoteComponent'
 import QcompileComponent from './modules/Qcompile/QcompileComponent'
 import regComponent from './modules/reg/regComponent'
 import PosComponent from './modules/POS/PosComponent'
-
+import $ from './libs/jquery/jquery3.1.1';
 export default [
 	<Route path="/" component={AppComponent}>
 		<Route path="/management/entry" component={EntryComponent} />

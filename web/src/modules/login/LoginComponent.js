@@ -18,10 +18,8 @@ class LoginComponent extends React.Component {
     }
 
     loginHandler(){
-        console.log(66666)
-        this.props.login(this.refs.username.value, this.refs.password.value)
-       
         
+        this.props.login(this.refs.username.value, this.refs.password.value)
     }
     Changepsw(){
         
@@ -53,7 +51,7 @@ class LoginComponent extends React.Component {
         
     }
     render(){
-        console.log(this)
+        
         return(
             <div className="login">
                 <ul>

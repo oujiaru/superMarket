@@ -10,23 +10,7 @@ import * as SearchActions from './SearchAction'
 
 var min=1;
 var max=10;
-window.onload=function(){
-   var butt = document.getElementById("butt")
-      butt.click()
-   var muu = document.getElementsByClassName("el-pagination el-pagination--small")[0]
 
-      muu.onclick = function(e){
-  
-          e = e || window.event;
-          var target = e.target || e.srcElement;
-          if(target.nodeName.toLowerCase() == 'li'){
-              min=target.innerText;
-
-               butt.click()
-          }
-        }
-
-}
 
 class SearchComponent extends Component {
  constructor(props) {
@@ -37,57 +21,57 @@ this.loginHandler
     columns: [
       {
         label: "",
-   		prop:"id",
+   		prop:"indexid",
         width: 60,
       fixed: 'left',
         align: 'center'
       },
       {
         label: "商品条码(*)",
-        prop: "goodscode",
+        prop: "barcode",
         width: 160,
         align: 'left'
       },
       {
         label: "商品名称(*)",
-        prop: "goodsname",
+        prop: "productname",
         width: 160
       },
       {
         label: "商品货号",
-        prop: "goodsnumber",
+        prop: "supplierID",
         width: 80
       },
       {
         label: "商品类别",
-        prop: "goodsstyle",
+        prop: "category",
         width: 80
       }
       ,
       {
         label: "单位",
-        prop: "goodsnuit",
+        prop: "standard",
         width: 80
       },
       {
         label: "零售价",
-        prop: "goodsprice",
+        prop: "retailprice",
         width: 100
       },
       {
         label: "会员价",
-        prop: "menberprice",
+        prop: "purchaseprice",
         width: 100
       },
       {
         label: "规格",
-        prop: "goodsmodel",
+        prop: "units",
         width: 120
-      },{
-        label:"日期",
-        prop:"time",
-        width:250
-
+      },
+      {
+        label: "日期",
+        prop: "time",
+        width: 250
       },
       {
         label: "编辑",
@@ -104,36 +88,47 @@ this.loginHandler
 }
 
  loginHandler(){
-          
-         
         this.props.Search(min,max)
        // location.reload()
     }
-SearchShousuo(){
 
+
+SearchShousuo(){
    this.props.Shousuo(this.refs.goodscode.refs.input.value)
 }
-shuaxin(){
-  location.reload();
-}
 
+// NUM(){
+//   this.props.num()
+// }
+
+
+componentDidMount(){
+  console.log(2121)
+  this.props.num()
+ this.props.Search(min,max)
+ var muu = document.getElementsByClassName("el-pagination el-pagination--small")[0]
+ muu.onclick = function(e){
+          e = e || window.event;
+           var target = e.target || e.srcElement;
+            if(target.nodeName.toLowerCase() == 'li'){
+              console.log(111)
+                min=target.innerText;
+                 this.props.Search(min,max)
+            }
+         }.bind(this)
+console.log(111)
+  
+}
 
 
 render() {
-  
-
 
   return (
     <div className="search" id="search">
-     
-
      <p>商品条形码/货号/名称</p>
       <div className="smore">
         <Input placeholder="请输入内容"  ref="goodscode"/>
-        <button  onClick={this.loginHandler.bind(this)}  id="butt"></button>
-       
          <Button type="primary"  onClick={this.SearchShousuo.bind(this)} >查询</Button>
-      <Button type="primary"  onClick={this.shuaxin.bind(this)} >刷新</Button>
       </div>
       <Table
         style={{width: '100%'}}
@@ -145,11 +140,7 @@ render() {
       <Pagination layout="prev, pager, next" total={100} small={true}/>
     </div>
   )
-
-
 }
-
-    	
     
 }
 //state可以理解为store树里面有多有不同组件action的行为方法，是所有Reducer返回的数据集合，是不同组件通信媒介
@@ -164,12 +155,6 @@ console.log(state)
 }
    
     
-
-
 //这句起关键性作用连接action跟reducer间的联系
 export default connect(mapStateToProps, SearchActions)(SearchComponent)
 
-
-
-
-// export default SearchComponent;

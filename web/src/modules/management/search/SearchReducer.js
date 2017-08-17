@@ -19,7 +19,7 @@ function Search(state = {loading: false}, action){
             reState.data = action.body
             reState.lastFetched = action.lastFetched
             reState.loading = false
-        
+        console.log(search,action.body)
             break
         case types.SEARCH_FAIL:
             reState.error = action.error
@@ -28,6 +28,28 @@ function Search(state = {loading: false}, action){
     }
     return reState;
 }
+function num(state = {loading: false}, action){
+    let reState = JSON.parse(JSON.stringify(state))
+    switch(action.type){
+
+        case types.SEARCH_NUM_REQUEST:
+            reState.loading = true
+            break
+        //根据ajax返回的action.type
+        case types.SEARCH_NUM_SUCCESS:
+            reState.data = action.body
+            reState.lastFetched = action.lastFetched
+            reState.loading = false
+        console.log(search,action.body)
+            break
+        case types.SEARCH_NUM_FAIL:
+            reState.error = action.error
+            reState.loading = false
+            break
+    }
+    return reState;
+}
+
 function Shousuo(state = {loading: false}, action){
     let reState = JSON.parse(JSON.stringify(state))
     switch(action.type){
@@ -52,7 +74,9 @@ function Shousuo(state = {loading: false}, action){
 
 const orderReducers = combineReducers({
     Search,
-    Shousuo
+    Shousuo,
+    num
+
 });
 
 export default orderReducers;
