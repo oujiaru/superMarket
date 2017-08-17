@@ -3,7 +3,7 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false });
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
 
-var mysql = require('../mysql');
+var mysql = require('../lumysql');
 
 
 module.exports = {
@@ -18,23 +18,36 @@ module.exports = {
             saveUninitialized: true,
         }))
 
-        app.post('/addList',urlencodedParser, function(request, response){
+        app.post('/addtt',urlencodedParser, function(request, response){
             //请求数据库
         
             console.log(request.body);
-            mysql.add('xiao', request.body, function(result){
+            mysql.add('sup', request.body, function(result){
                 console.log(request.body)
                 response.send('result')
             });
         });   
-        app.post('/cha',urlencodedParser, function(request, response){
+        app.post('/chaxun',urlencodedParser, function(request, response){
             //请求数据库
         
             // console.log(request.body);
             // response.send('response')
+            console.log(request.body)
+            mysql.query('sup',request.body, function(result){
+              
+                response.send(result)
 
-            mysql.query('xiao', function(result){
-               
+
+            });
+        }); 
+        app.post('/shousuo',urlencodedParser, function(request, response){
+            //请求数据库
+        
+            // console.log(request.body);
+            // response.send('response')
+            console.log(request.body)
+            mysql.queryshou('sup',request.body, function(result){
+              console.log(11)
                 response.send(result)
 
 

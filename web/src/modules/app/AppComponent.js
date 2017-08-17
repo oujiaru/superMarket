@@ -7,7 +7,34 @@ import $ from '../../libs/jquery/jquery3.1.1';
 
 import {Router, Route, Link, hashHistory, browserHistory} from 'react-router'; 
 
-var dataSet = [{type:'商品管理',box:['商品录入','商品浏览','3']},{type:'采购订单',box:['1','2','3']},{type:'用户管理',box:['1','2','3']},{type:'前台收银',box:['1','2','3']}]
+var dataSet = [
+{type:'商品管理',
+    box:[
+    {name:'商品录入',path:'/'},
+    {name:'商品浏览',path:'/'},
+    {name:'商品查询',path:'/'}
+    ]
+},
+{type:'采购订单',
+    box:[
+    {name:'采购商品',path:'/'},
+    {name:'出库',path:'/'},
+    {name:'入库',path:'/'}
+    ]
+},
+{type:'用户管理',
+    box:[
+    {name:'用户权限',path:'/'},
+    {name:'1',path:'/'},
+    {name:'2',path:'/'}
+    ]
+},
+{type:'前台收银',
+    box:[
+    {name:'收银台',path:'/'},
+    ]
+}
+]
 
 
 class AppComponent extends Component{
@@ -35,7 +62,11 @@ class AppComponent extends Component{
 										{
 											item.box.map(function(res,idx){
 												
-												return <li key={idx}><Link to="/login">{res}</Link></li>
+
+												return <li key={idx}><Link to={res.path}>{res.name}</Link></li>
+
+								
+
 											})
 										}
 									</ul>

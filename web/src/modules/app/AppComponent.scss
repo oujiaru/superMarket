@@ -37,6 +37,10 @@ html,body{
 				font-size:18px;
 				padding:10px 0;
 				cursor:default;
+				background-color:#324057;
+			}
+			p:hover{
+				background-color:#D3DCE6;
 			}
 			
 			.littleBox{
@@ -48,6 +52,9 @@ html,body{
 					a{
 						color:white;
 					}
+				}
+				li:hover{
+					background-color:#D3DCE6;
 				}
 			}
 

@@ -1,229 +1,67 @@
-import React, {Component} from 'react';
-import QcompileAction from './QcompileAction';
-import {Form} from 'element-react';
-import { Button } from 'element-react';
-import { Select } from 'element-react';
-import { Input } from 'element-react';
-import { Table} from 'element-react';
+
 import './Qcompile.scss';
 
-class QcompileComponent extends Component{
-    constructor(props) {
-  super(props);
+import React, {Component} from 'react'
+import {connect} from 'react-redux'
+import { Input } from 'element-react';
+import * as QcompileAction from './QcompileAction'
 
-  this.state = {
-    form: {
-      user1: '',
-      region: '',
-        user: ''
-    },
-     columns: [
-     {
-        type: 'index'
-      },
-      {
-        label: "申请时间",
-        prop: "",
-      },
-      {
-        label: "供货商",
-        prop: "name",
 
-      },
-      {
-        label: "商品条型码",
-        prop: "",
 
-      },
-      {
-        label: "规格",
-        prop: "province",
+class QcompileComponent extends Component {
 
-      },
-      {
-        label: "进价",
-        prop: "zip",
+     constructor(props){
+        super(props)
+    }
 
-      },
-      {
-        label: "审核状态",
-        prop: "",
+    loginHandler(){
+        this.props.login(
+            this.refs.goodscode.value,
+            this.refs.goodsname.value,
+            this.refs.goodsnumber.value,
+            this.refs.goodsstyle.value,
+            this.refs.goodsnuit.value,
+            this.refs.poprice.value,
+            this.refs.pocount.value,
+            this.refs.goodsmodel.value,
+            this.refs.posupplier.value,
+            this.refs.posubmissiontime.value,
+            this.refs.poacknowledgingtime.value,
+            this.refs.postate.value,
+            this.refs.pobuyer.value,
+        )
+        // console.log(this.props)
+    }
+    render(){
+        return(
+            <div className="entry">
+                <ul>
+                    <li className="spli">采购信息</li>
+                    <li className="nof2"><span>商品条码(*):</span><input placeholder="请输入内容" ref="goodscode"/></li>
+                    <li className="nof2">商品名称(*):<input placeholder="请输入内容" ref="goodsname"/></li>
+                    <li className="nof2">商品货号:<input placeholder="请输入内容" ref="goodsnumber"/></li>
+                    <li className="nof2">商品类别:<input placeholder="请输入内容" ref="goodsstyle"/></li>
+                    <li className="nof2">单位:<input placeholder="请输入内容" ref="goodsnuit"/></li>
+                    <li className="nof2">进货价:<input placeholder="请输入内容" ref="poprice"/></li>
+                    <li className="nof2">规格:<input placeholder="请输入内容"  ref="goodsmodel"/></li>
+                    <li className="nof2">数量:<input placeholder="请输入内容"  ref="pocount"/></li>
+                    <li className="nof2">供货商:<input placeholder="请输入内容"  ref="posupplier"/></li>
+                    <li className="nof2">采购申请时间:<input placeholder="请输入内容"  ref="posubmissiontime"/></li>
+                    <li className="nof2">采购单确认时间:<input placeholder="请输入内容"  ref="poacknowledgingtime"/></li>
+                    <li className="nof2">采购单状态:<input placeholder="请输入内容"  ref="postate"/></li>
+                    <li className="nof2">采购员:<input placeholder="请输入内容"  ref="pobuyer"/></li>
+                </ul>
 
-      },
-      {
-        label: "数量",
-        prop: "",
- 
-      },
-      {
-        label: "确认时间",
-        prop: "date",
-
-      },
-            {
-        label: "采购员",
-        prop: "",
-
-      },
-      
-    ],
-        data: [{
-      date: '2016-05-02',
-      name: '王小虎',
-      province: '上海',
-      city: '普陀区',
-      address: '上海市普陀区金沙江路 1518 弄',
-      zip: 200333
-    },{
-      date: '2016-05-02',
-      name: '王小虎',
-      province: '上海',
-      city: '普陀区',
-      address: '上海市普陀区金沙江路 1518 弄',
-      zip: 200333
-    },{
-      date: '2016-05-02',
-      name: '王小虎',
-      province: '上海',
-      city: '普陀区',
-      address: '上海市普陀区金沙江路 1518 弄',
-      zip: 200333
-    },{
-      date: '2016-05-02',
-      name: '王小虎',
-      province: '上海',
-      city: '普陀区',
-      address: '上海市普陀区金沙江路 1518 弄',
-      zip: 200333
-    },{
-      date: '2016-05-02',
-      name: '王小虎',
-      province: '上海',
-      city: '普陀区',
-      address: '上海市普陀区金沙江路 1518 弄',
-      zip: 200333
-    },{
-      date: '2016-05-02',
-      name: '王小虎',
-      province: '上海',
-      city: '普陀区',
-      address: '上海市普陀区金沙江路 1518 弄',
-      zip: 200333
-    },{
-      date: '2016-05-02',
-      name: '王小虎',
-      province: '上海',
-      city: '普陀区',
-      address: '上海市普陀区金沙江路 1518 弄',
-      zip: 200333
-    },{
-      date: '2016-05-02',
-      name: '王小虎',
-      province: '上海',
-      city: '普陀区',
-      address: '上海市普陀区金沙江路 1518 弄',
-      zip: 200333
-    }]
-   
-  };
+                 <button onClick={this.loginHandler.bind(this)}>保存</button>
+            </div>
+        )
+    }
 }
+const mapStateToProps = state => ({
+    loading: state.login.loading,
+})
+export default connect(mapStateToProps, QcompileAction)(QcompileComponent)
+// export default LoginComponent
 
-onSubmit(e) {
-  e.preventDefault();
 
-  console.log('submit!');
-}
-
-onChange(key, value) {
-  this.setState({
-    form: Object.assign(this.state.form, { [key]: value })
-  });
-}
-
-render() {
-  return (
-  <div>
-    <div className="top">
-
-    <Form inline={true} model={this.state.form} onSubmit={this.onSubmit.bind(this)} className="demo-form-inline">
-      <Form.Item>
-        <Input value={this.state.form.user1} placeholder="申请时间" onChange={this.onChange.bind(this, 'user1')}></Input>
-      </Form.Item>
-    <Form.Item>
-        <Button nativeType="submit" type="primary">搜索</Button>
-      </Form.Item>
-       <Form.Item>
-        <Input value={this.state.form.user2} placeholder="确认时间" onChange={this.onChange.bind(this, 'user1')}></Input>
-      </Form.Item>
-      <Form.Item>
-        <Button nativeType="submit" type="primary">搜索</Button>
-      </Form.Item>
-       <Form.Item>
-        <Input value={this.state.form.user1} placeholder="审批状态" onChange={this.onChange.bind(this, 'user1')}></Input>
-      </Form.Item>
-      <Form.Item>
-        <Button nativeType="submit" type="primary">搜索</Button>
-      </Form.Item>
-      <Form.Item>
-        <Input value={this.state.form.user1} placeholder="采购员" onChange={this.onChange.bind(this, 'user1')}></Input>
-      </Form.Item>
-      <Form.Item>
-        <Button nativeType="submit" type="primary">搜索</Button>
-      </Form.Item>
-      <Form.Item>
-        <Select value={this.state.form.region} placeholder="查询供货商">
-          <Select.Option label="区域一" value="shanghai"></Select.Option>
-          <Select.Option label="区域二" value="beijing"></Select.Option>
-        </Select>
-      </Form.Item>
-    <Form.Item>
-        <Input value={this.state.form.user} placeholder="条码" onChange={this.onChange.bind(this, 'user')}></Input>
-      </Form.Item>
-      <Form.Item>
-        <Button nativeType="submit" type="primary">单品查询</Button>
-      </Form.Item>
-
-      <Form.Item>
-        <Button nativeType="submit" type="primary">编辑</Button>
-      </Form.Item>
-
-    </Form>
- 
-    </div>
-
-  <div className="main">
-
-   <Table className="main2"
-        style={{width: '100%', marginTop: 20}}
-        height={450}
-        showSummary={true}
-        columns={this.state.columns}
-        data={this.state.data}
-        sumText='总价'
-        getSummaries={(columns, data)=>{
-          const dataList = [];
-          for(var i=0; i < columns.length; i++){
-            let total = 0;
-            for(let j=0; j < data.length; j++){
-              let value = data[j][columns[i]['property']];
-            
-              if(isNaN(value)){
-                total = 'N/A'
-                break;
-              }else{
-                total += parseFloat(value);
-              }
-            }
-            dataList[i] = isNaN(total) ? total : total +'元';
-          }
-          return dataList;
-        }}
-        border={true}
-      />
-   </div>
-</div> 
-  )
-}
-}
-
-export default QcompileComponent;
+// export default QcompileComponent;

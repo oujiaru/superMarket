@@ -1,9 +1,9 @@
 import * as constants from '../../redux/commonConstant'
 
-export function login(username, password){
+export function reg(username, password){
     return {
         types: [constants.REQUEST, constants.SUCCESS, constants.FAILURE],
-        path: 'login',
+        path: 'register',
         method: 'post',
         query: {username:username, password:password}
     }

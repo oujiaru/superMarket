@@ -7,13 +7,17 @@ import * as EntryActions from './EntryAction'
 
 
 
+
 class EntryComponent extends Component {
+
 
      constructor(props){
         super(props)
+             
     }
 
     loginHandler(){
+
         this.props.login(
             this.refs.goodscode.value,
             this.refs.goodsname.value,
@@ -24,9 +28,12 @@ class EntryComponent extends Component {
             this.refs.menberprice.value,
             this.refs.goodsmodel.value,
         )
+
        // location.reload()
+
     }
     render(){
+        
         return(
             <div className="entry">
                 <ul>
@@ -56,9 +63,11 @@ class EntryComponent extends Component {
         )
     }
 }
-const mapStateToProps = state => ({
+const mapStateToProps = state => {
+     console.log(123,state)
+    return {
     loading: state.login.loading,
-})
+}}
 export default connect(mapStateToProps, EntryActions)(EntryComponent)
 // export default LoginComponent
 

@@ -22,9 +22,11 @@ module.exports = {
 		var  addSql = 'INSERT INTO' + ' ' + list + '(' + item + ') VALUES('+ str +')';
 		// var  addSqlParams = [data.Code, data.Name, data.Price, data.Unit, data.Type, data.Standard, data.SupplierID];
 		connection.query(addSql, arr, function (err, result) {
+			console.log(666)
 		    if(!err){
 			    if(callback && typeof callback == 'function'){
 			    	callback(result);
+
 			    }
 		    }          
 		});
@@ -81,7 +83,11 @@ module.exports = {
 		});
 		connection.end();
 	},
-	query: function(data, callback){
+
+	
+
+	query: function(data,res, callback){
+
 		var connection = mysql.createConnection({
 		  host     : 'localhost',
 		  user     : 'root',
@@ -89,9 +95,36 @@ module.exports = {
 		  database : database
 		});
 		connection.connect();
-		var  sql = 'SELECT * FROM xiao';
+
+		// var  sql = 'SELECT * FROM sup ';
+		var  sql = 'SELECT * FROM sup where id between '+(res.min-1)*res.max+' and '+res.max*res.min;
 		connection.query(sql,function (err, result) {
 			console.log(result)
+
+		   if(!err){
+			    if(callback && typeof callback == 'function'){
+			    	callback(result);
+
+			    }
+		    }       
+		});
+		connection.end();
+	},
+	queryshou: function(data,res, callback){
+
+		var connection = mysql.createConnection({
+		  host     : 'localhost',
+		  user     : 'root',
+		  password : '',
+		  database : database
+		});
+		connection.connect();
+
+		// var  sql = 'SELECT * FROM sup ';
+		var  sql = 'select * from sup a where a.goodsName like'+ ''%'+res.zhi+'%'';
+		connection.query(sql,function (err, result) {
+			
+
 		   if(!err){
 			    if(callback && typeof callback == 'function'){
 			    	callback(result);
@@ -101,7 +134,7 @@ module.exports = {
 		});
 		connection.end();
 	}
-}
+};
 // select
 // 	SQL_CALC_FOUND_ROWS
 // 	b.IndexID,
@@ -144,6 +177,7 @@ module.exports = {
 //         console.log('与mysql数据库建立连接失败');  
 //     }else{  
 //         console.log('与mysql数据库建立连接成功');  
+
 //         connection.query(querySql, function(err,result){  
 //             if(err){  
 //             	console.log(err)
@@ -157,3 +191,4 @@ module.exports = {
 //     }  
 // })  
 // connection.end();
+

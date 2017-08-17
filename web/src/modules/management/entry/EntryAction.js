@@ -14,7 +14,7 @@ export function login(
 
     return {
         types: [constants.REQUEST, constants.SUCCESS, constants.FAILURE],
-        path: 'addList',
+        path: 'addtt',
         method: 'post',
         query: {goodscode,
             goodsname,

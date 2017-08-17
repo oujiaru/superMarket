@@ -1,12 +1,11 @@
-import common from '../../libs/common/common';
+import * as constants from '../../redux/commonConstant'
 
-export function login(aa){
-
+export function code(code){
     return {
         types: [constants.REQUEST, constants.SUCCESS, constants.FAILURE],
-        path: 'cha1',
+        path: 'code',
         method: 'post',
-        query: {aa}
+        query: {Code: code}
     }
     // return {
     // 	type: constants.REQUEST
