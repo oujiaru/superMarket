@@ -88,7 +88,7 @@ module.exports = {
 		var  sql = 'SELECT * FROM supp where indexid between '+(res.min-1)*res.max+' and '+res.max*res.min;
 		// var sql = 'SELECT SQL_CALC_FOUND_ROWS * FROM supp where indexid between'+(res.min-1)*res.max+'and'+res.max*res.min+';SELECT FOUND_ROWS()';
 		connection.query(sql,function (err, result) {
-		
+			console.log(result)
 
 		   if(!err){
 			    if(callback && typeof callback == 'function'){
@@ -107,7 +107,7 @@ module.exports = {
 		// var  sql = 'SELECT * FROM supp where indexid between '+(res.min-1)*res.max+' and '+res.max*res.min;
 		var sql = 'SELECT * FROM supp';
 		connection.query(sql,function (err, result) {
-			
+		
 
 		   if(!err){
 			    if(callback && typeof callback == 'function'){
@@ -118,6 +118,7 @@ module.exports = {
 		});
 		connection.end();
 	},
+	
 
 	queryshou: function(data,res, callback){
 

@@ -1,8 +1,8 @@
-import * as constants from './regConstant'
+import * as constants from '../../redux/commonConstant'
 
 export function reg(username, password){
     return {
-        types: [constants.REG_REQUEST, constants.REG_SUCCESS, constants.REG_FAILURE],
+        types: [constants.REQUEST, constants.SUCCESS, constants.FAILURE],
         path: 'register',
         method: 'post',
         query: {username:username, password:password}

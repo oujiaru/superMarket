@@ -24,6 +24,7 @@ this.loginHandler
         label: "",
    		prop:"indexid",
         width: 80,
+        width: 60,
       fixed: 'left',
         align: 'center'
       },
@@ -129,6 +130,8 @@ onClick() {
 
 
 
+
+
 componentDidMount(){
 
   this.props.num()
@@ -160,6 +163,13 @@ componentDidMount(){
 }
 
 
+
+ 
+
+  
+
+
+
 componentDidUpdate(){
 
  
@@ -179,6 +189,8 @@ componentDidUpdate(){
   
 
 }
+
+
 
 
 

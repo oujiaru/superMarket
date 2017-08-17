@@ -1,12 +1,12 @@
-import common from '../../libs/common/common';
+import * as constants  from './POConstant';
 
 export function login(aa){
 
     return {
-        types: [constants.REQUEST, constants.SUCCESS, constants.FAILURE],
+        types: [constants.PO_REQUEST, constants.PO_SUCCESS, constants.PO_FAILURE],
         path: 'cha1',
         method: 'post',
-        query: {aa}
+       	query: {aa:aa}
     }
     // return {
     // 	type: constants.REQUEST

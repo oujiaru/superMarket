@@ -1,24 +1,25 @@
-var sql = require('mysql');
+var userSql = require('mysql');
 
 var database = 'supermarket';
 
 module.exports = {
-	query: function(tableName,request,callback){
-		var connection = sql.createConnection({
+	user: function(tableName,request,callback){
+
+		var connection = userSql.createConnection({
 		  host     : 'localhost',
 		  user     : 'root',
 		  password : '',
 		  database : database
 		});
 		connection.connect();
-		console.log(request);
+		
 		var sql = 'SELECT * FROM user WHERE username = '+"'" +request.username+ "'"+' AND password =' + "'"+request.password +"'";
 
 
 		connection.query(sql,function (err, result) {
-			console.log(result)
+			
 		   if(!err){
-			    if(callback && typeof ncallback == 'function'){
+			    if(callback && typeof callback == 'function'){
 			    	callback(result);
 			    }
 		    }else {

@@ -20,6 +20,7 @@ function Search(state = {loading: false}, action){
             reState.lastFetched = action.lastFetched
             reState.loading = false
        
+
             break
         case types.SEARCH_FAIL:
             reState.error = action.error

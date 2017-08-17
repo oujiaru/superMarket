@@ -58,12 +58,16 @@ module.exports = {
             });
         }); 
       
+        
+      
         app.post('/Shousuo',urlencodedParser, function(request, response){
             //请求数据库
         
             // console.log(request.body);
             // response.send('response')
             console.log(request.body)
+
+
             mysql.queryshou('supp',request.body, function(result){
                     console.log(11)
                     response.send(result)

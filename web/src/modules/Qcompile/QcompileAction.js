@@ -1,4 +1,4 @@
-import * as constants from '../../redux/commonConstant';
+import * as constants from './QcompileConstant';
 
 export function login(
      goodscode,
@@ -18,8 +18,8 @@ export function login(
         ){
 
     return {
-        types: [constants.REQUEST, constants.SUCCESS, constants.FAILURE],
-        path: 'addList',
+        types: [constants.Qcompile_REQUEST, constants.Qcompile_SUCCESS, constants.Qcompile_FAILURE],
+        path: 'addQcompile',
         method: 'post',
         query: {
                  goodscode,

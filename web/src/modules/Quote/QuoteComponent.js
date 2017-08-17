@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
-import QuoteAction from './QuoteAction';
+import * as QuoteActions from './QuoteAction';
 import {Form} from 'element-react';
 import { Button } from 'element-react';
 import { Select } from 'element-react';
 import { Input } from 'element-react';
 import { Table} from 'element-react';
 import { Link } from 'react-router';
+import {connect} from 'react-redux';
 import './Quote.scss';
 
 class QuoteComponent extends Component{
@@ -24,47 +25,48 @@ class QuoteComponent extends Component{
       },
       {
         label: "申请时间",
-        prop: "",
+        prop: "posubmissiontime",
+        width: 120
       },
       {
         label: "供货商",
-        prop: "name",
-
+        prop: "posupplier",
+        width: 120
       },
       {
         label: "商品条型码",
-        prop: "",
-
+        prop: "goodscode",
+        width: 120
       },
       {
         label: "规格",
-        prop: "province",
-
+        prop: "goodsmodel",
+        width: 120
       },
       {
         label: "进价",
-        prop: "zip",
-
+        prop: "poprice",
+        width: 120
       },
       {
-        label: "审核状态",
-        prop: "",
-
+        label: "状态",
+        prop: "postate",
+        width: 120
       },
       {
         label: "数量",
-        prop: "",
- 
+        prop: "pocount",
+        width: 120
       },
       {
         label: "确认时间",
-        prop: "date",
-
+        prop: "poacknowledgingtime",
+        width: 120
       },
             {
         label: "采购员",
-        prop: "",
-
+        prop: "pobuyer",
+        width: 120
       },
       {
         label: "操作",
@@ -76,64 +78,8 @@ class QuoteComponent extends Component{
         }
       }
       
-    ],
-        data: [{
-      date: '2016-05-02',
-      name: '王小虎',
-      province: '上海',
-      city: '普陀区',
-      address: '上海市普陀区金沙江路 1518 弄',
-      zip: 200333
-    },{
-      date: '2016-05-02',
-      name: '王小虎',
-      province: '上海',
-      city: '普陀区',
-      address: '上海市普陀区金沙江路 1518 弄',
-      zip: 200333
-    },{
-      date: '2016-05-02',
-      name: '王小虎',
-      province: '上海',
-      city: '普陀区',
-      address: '上海市普陀区金沙江路 1518 弄',
-      zip: 200333
-    },{
-      date: '2016-05-02',
-      name: '王小虎',
-      province: '上海',
-      city: '普陀区',
-      address: '上海市普陀区金沙江路 1518 弄',
-      zip: 200333
-    },{
-      date: '2016-05-02',
-      name: '王小虎',
-      province: '上海',
-      city: '普陀区',
-      address: '上海市普陀区金沙江路 1518 弄',
-      zip: 200333
-    },{
-      date: '2016-05-02',
-      name: '王小虎',
-      province: '上海',
-      city: '普陀区',
-      address: '上海市普陀区金沙江路 1518 弄',
-      zip: 200333
-    },{
-      date: '2016-05-02',
-      name: '王小虎',
-      province: '上海',
-      city: '普陀区',
-      address: '上海市普陀区金沙江路 1518 弄',
-      zip: 200333
-    },{
-      date: '2016-05-02',
-      name: '王小虎',
-      province: '上海',
-      city: '普陀区',
-      address: '上海市普陀区金沙江路 1518 弄',
-      zip: 200333
-    }]
+    ]
+       
    
   };
 }
@@ -149,36 +95,33 @@ onChange(key, value) {
     form: Object.assign(this.state.form, { [key]: value })
   });
 }
+SearchHandler(){
+        this.props.Search(this.refs.goodscode.value)
+       // location.reload()
+    }
+
 
 render() {
   return (
-  <div className="bigQuote">
+   <div className="bigQuote">
     <div className="top">
 
     <Form inline={true} model={this.state.form} onSubmit={this.onSubmit.bind(this)} className="demo-form-inline">
       <Form.Item>
         <Input value={this.state.form.user1} placeholder="申请时间" onChange={this.onChange.bind(this, 'user1')}></Input>
-      </Form.Item>
-    <Form.Item>
         <Button nativeType="submit" type="primary">搜索</Button>
       </Form.Item>
        <Form.Item>
         <Input value={this.state.form.user2} placeholder="确认时间" onChange={this.onChange.bind(this, 'user1')}></Input>
-      </Form.Item>
-      <Form.Item>
         <Button nativeType="submit" type="primary">搜索</Button>
       </Form.Item>
        <Form.Item>
         <Input value={this.state.form.user1} placeholder="审批状态" onChange={this.onChange.bind(this, 'user1')}></Input>
-      </Form.Item>
-      <Form.Item>
         <Button nativeType="submit" type="primary">搜索</Button>
       </Form.Item>
       <Form.Item>
         <Input value={this.state.form.user1} placeholder="采购员" onChange={this.onChange.bind(this, 'user1')}></Input>
-      </Form.Item>
-      <Form.Item>
-        <Button nativeType="submit" type="primary">搜索</Button>
+       <Button nativeType="submit" type="primary">搜索</Button>
       </Form.Item>
       <Form.Item>
         <Select value={this.state.form.region} placeholder="查询供货商">
@@ -188,8 +131,6 @@ render() {
       </Form.Item>
     <Form.Item>
         <Input value={this.state.form.user} placeholder="条码" onChange={this.onChange.bind(this, 'user')}></Input>
-      </Form.Item>
-      <Form.Item>
         <Button nativeType="submit" type="primary">单品查询</Button>
       </Form.Item>
 
@@ -203,32 +144,13 @@ render() {
 
   <div className="main">
 
-   <Table className="main2"
-        style={{width: '100%', marginTop: 20}}
-        height={450}
+    <Table
+        style={{width: '100%' ,height: '100%'}}
         showSummary={true}
         columns={this.state.columns}
-        data={this.state.data}
-        sumText='总价'
-        getSummaries={(columns, data)=>{
-          const dataList = [];
-          for(var i=0; i < columns.length; i++){
-            let total = 0;
-            for(let j=0; j < data.length; j++){
-              let value = data[j][columns[i]['property']];
-            
-              if(isNaN(value)){
-                total = 'N/A'
-                break;
-              }else{
-                total += parseFloat(value);
-              }
-            }
-            dataList[i] = isNaN(total) ? total : total +'元';
-          }
-          return dataList;
-        }}
+        data={this.props.data}
         border={true}
+        height={460}
       />
    </div>
 </div> 
@@ -236,4 +158,14 @@ render() {
 }
 }
 
-export default QuoteComponent;
+const mapStateToProps = state => {
+ // console.log(state)
+ //  console.log(666)
+
+  return {
+          data:state.Search
+    }
+
+}
+export default connect(mapStateToProps, QuoteActions)(QuoteComponent)
+
