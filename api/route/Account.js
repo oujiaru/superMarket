@@ -15,11 +15,11 @@ module.exports = {
             saveUninitialized: true,
         }))
 
-        app.get('/login', function(request, response){
+        app.post('/login',urlencodeParser,function(request, response){
             //请求数据库，如果正确，则记录登陆状态
-            console.log(request.query)
-            sql.user('user',request.query, function(res){
-                request.session.name = request.query.username
+            
+            sql.user('user',request.body, function(res){
+                request.session.name = request.body.username
                 console.log('api',666)
                 if(res.length>0){
                     response.send({status: true,data:request.session.name});

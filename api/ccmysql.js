@@ -70,22 +70,64 @@ module.exports = {
 		});
 		connection.end();
 	},
-	queryCode: function(data, callback){
+	query: function(data, callback){
 		LinkMysql();
 		var  sql = 'SELECT * FROM goods WHERE Code = '+ data +'';
-		console.log('code',sql)
 		connection.query(sql,function (err, result) {
 		   if(!err){
 			    if(callback && typeof callback == 'function'){
-			    	console.log('code33',result)
 			    	callback(result);
 			    	
 			    }
-		    }else{
-		    	console.log(err);
 		    }       
 		});
 		connection.end();
+	},
+
+	querynum: function(data,res, callback){
+
+		LinkMysql();
+
+		// var  sql = 'SELECT * FROM sup ';
+		// var  sql = 'SELECT * FROM supp where indexid between '+(res.min-1)*res.max+' and '+res.max*res.min;
+		var sql = 'SELECT * FROM supp';
+		connection.query(sql,function (err, result) {
+			console.log(result)
+
+		   if(!err){
+			    if(callback && typeof callback == 'function'){
+			    	callback(result);
+
+			    }
+		    }       
+		});
+		connection.end();
+	},
+
+	queryshou: function(data,res, callback){
+
+		var connection = mysql.createConnection({
+		  host     : 'localhost',
+		  user     : 'root',
+		  password : '',
+		  database : database
+		});
+		connection.connect();
+
+		// var  sql = 'SELECT * FROM sup ';
+		var  sql = 'select  * from supp a where a.goodsName like'+ ''%'+res.zi+'%'';
+		connection.query(sql,function (err, result) {
+			
+
+		   if(!err){
+			    if(callback && typeof callback == 'function'){
+			    	callback(result);
+			    }
+
+			}
+	
+		connection.end();
+		})
 	},
 	user: function(data, callback){
 		LinkMysql();
@@ -100,7 +142,22 @@ module.exports = {
 		    }       
 		});
 		connection.end();
+	},
+	fuzzy: function(list, data, callback){
+		LinkMysql();
+		var FieldName = Object.keys(data);
+		var sql = 'select * from' +' '+ list +' '+ 'where'+ ' '+FieldName+' ' +'like'+' '+"'"+'%'+data[FieldName]+'%'+"'"; 
+		console.log(sql);
+		connection.query(sql, function(err, result) {
+		    if(!err){
+			    if(callback && typeof callback == 'function'){
+			    	callback(result);
+			    }
+		    }          
+		});
+		connection.end();
 	}
+
 }
 // select
 // 	SQL_CALC_FOUND_ROWS

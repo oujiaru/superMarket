@@ -14,7 +14,7 @@ module.exports = {
 		connection.connect();
 		
 		var sql = 'SELECT * FROM user WHERE username = '+"'" +request.username+ "'"+' AND password =' + "'"+request.password +"'";
-
+		console.log('login',sql)
 
 		connection.query(sql,function (err, result) {
 			

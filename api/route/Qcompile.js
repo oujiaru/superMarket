@@ -3,8 +3,7 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false });
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
 
-var mysql = require('../mysql');
-
+var mysql = require('../ccmysql');
 
 module.exports = {
     Register: function(app){
@@ -18,23 +17,66 @@ module.exports = {
             saveUninitialized: true,
         }))
 
-        app.post('/addQcomoile',urlencodedParser, function(request, response){
+            
+        app.post('/addQcompile',urlencodedParser, function(request, response){
             //请求数据库
         
-            console.log(request.body);
-            mysql.add('xiao', request.body, function(result){
-                console.log(request.body)
-                response.send('result')
+            // console.log(request.body);
+            // response.send('response')
+            console.log(request.body)
+            mysql.add('xiao1',request.body, function(result){
+              console.log(0000)
+                response.send(result)
+
+
+
             });
-        });   
-        app.post('/cha',urlencodedParser, function(request, response){
+        }); 
+        app.post('/ss',urlencodedParser, function(request, response){
             //请求数据库
         
-            console.log(request.body);
-            mysql.query('xiao', request.body, function(result){
-                console.log(request.body)
-                response.send('result')
+            // console.log(request.body);
+            // response.send('response')
+            console.log(request.body)
+            mysql.query('xiao1',request.body, function(result){
+                    console.log(11)
+                    response.send(result)
+
+                
+            });
+        }); 
+                app.post('/nums',urlencodedParser, function(request, response){
+            //请求数据库
+        
+            // console.log(request.body);
+            // response.send('response')
+            console.log(request.body)
+            mysql.query('xiao1',request.body, function(result){
+                    console.log(12)
+                    response.send(result)
+
+                
             });
         });   
+                app.post('/cx',urlencodedParser, function(request, response){
+            //请求数据库
+        
+            // console.log(request.body);
+            // response.send('response')
+            console.log(request.body)
+            mysql.query('xiao1',request.body, function(result){
+                    console.log(13)
+                    response.send(result)
+
+                
+            });
+        }); 
+        app.get('/fuzzy', urlencodedParser, function(request, response){
+            console.log(request.query);
+            mysql.fuzzy('sup', request.query, function(result){
+                response.send(result);
+            })
+        }) 
     }
+    
 }

@@ -223,7 +223,7 @@ render() {
             <li>日期：<input type="text" value="2017-08-17 20:34:03" /></li>
             <li className="lastli"><span className="sp1">确认</span><span className="sp1">取消</span></li>
         </ul>
-        <Pagination layout="prev, pager, next" total={31600} small={true}/>
+        <Pagination layout="prev, pager, next" total={3160} small={true}/>
         <Button type="text" onClick={this.onClick.bind(this)}>点击打开 Message Box</Button>
     </div>
   )

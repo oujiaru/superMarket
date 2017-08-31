@@ -1,12 +1,15 @@
 import React, {Component} from 'react';
-import POAction from './POAction';
+import POActions from './POAction';
 import {Form} from 'element-react';
 import { Button } from 'element-react';
 import { Select } from 'element-react';
 import { Input } from 'element-react';
 import { Table} from 'element-react';
 import { Link } from 'react-router';
+import {connect} from 'react-redux'
+import $ from '../../libs/jquery/jquery-3.2.1.js'
 import './PO.scss';
+
 
 class POComponent extends Component{
     constructor(props) {
@@ -24,11 +27,11 @@ class POComponent extends Component{
       },
       {
         label: "进货批次",
-        prop: "",
+        prop: "px",
       },
       {
         label: "供货商",
-        prop: "",
+        prop: "name",
 
       },
       {
@@ -38,12 +41,12 @@ class POComponent extends Component{
       },
       {
         label: "规格",
-        prop: "",
+        prop: "province",
 
       },
       {
         label: "进价",
-        prop: "",
+        prop: "zip",
 
       },
       {
@@ -58,68 +61,76 @@ class POComponent extends Component{
       },
       {
         label: "入库日期",
-        prop: "",
+        prop: "date",
 
       },
-      data: [{
+      
+    ],
+        data: [{
+      px:'#001',    
+      date: '2016-05-02',
+      name: '王虎',
+      province: '广州',
+      city: '普陀区',
+      address: '上海市普陀区金沙江路 1518 弄',
+      zip: 2033
+    },{
+      px:'#002',
+      date: '2016-05-02',
+      name: '小虎',
+      province: '上海',
+      city: '普陀区',
+      address: '上海市普陀区金沙江路 1518 弄',
+      zip: 2003
+    },{
+      px:'#003',
+      date: '2016-05-02',
+      name: '小王',
+      province: '北京',
+      city: '普陀区',
+      address: '上海市普陀区金沙江路 1518 弄',
+      zip: 2333
+    },{
+      px:'#004',
       date: '2016-05-02',
       name: '王小虎',
       province: '上海',
       city: '普陀区',
       address: '上海市普陀区金沙江路 1518 弄',
-      zip: 200333
+      zip: 20033
     },{
+      px:'#005',
       date: '2016-05-02',
-      name: '王小虎',
-      province: '上海',
+      name: '王小龙',
+      province: '天津',
+      city: '普陀区',
+      address: '上海市普陀区金沙江路 1518 弄',
+      zip: 333
+    },{
+      px:'#006',
+      date: '2016-05-02',
+      name: '王小明',
+      province: '海南',
+      city: '普陀区',
+      address: '上海市普陀区金沙江路 1518 弄',
+      zip: 270333
+    },{
+      px:'#007',
+      date: '2016-05-02',
+      name: '李小朗',
+      province: '香港',
       city: '普陀区',
       address: '上海市普陀区金沙江路 1518 弄',
       zip: 200333
     },{
+      px:'#008',
       date: '2016-05-02',
-      name: '王小虎',
-      province: '上海',
-      city: '普陀区',
-      address: '上海市普陀区金沙江路 1518 弄',
-      zip: 200333
-    },{
-      date: '2016-05-02',
-      name: '王小虎',
-      province: '上海',
-      city: '普陀区',
-      address: '上海市普陀区金沙江路 1518 弄',
-      zip: 200333
-    },{
-      date: '2016-05-02',
-      name: '王小虎',
-      province: '上海',
-      city: '普陀区',
-      address: '上海市普陀区金沙江路 1518 弄',
-      zip: 200333
-    },{
-      date: '2016-05-02',
-      name: '王小虎',
-      province: '上海',
-      city: '普陀区',
-      address: '上海市普陀区金沙江路 1518 弄',
-      zip: 200333
-    },{
-      date: '2016-05-02',
-      name: '王小虎',
-      province: '上海',
-      city: '普陀区',
-      address: '上海市普陀区金沙江路 1518 弄',
-      zip: 200333
-    },{
-      date: '2016-05-02',
-      name: '王小虎',
-      province: '上海',
+      name: '李狼',
+      province: '西藏',
       city: '普陀区',
       address: '上海市普陀区金沙江路 1518 弄',
       zip: 200333
     }]
-      
-    ]
    
   };
 }
@@ -135,23 +146,20 @@ onChange(key, value) {
     form: Object.assign(this.state.form, { [key]: value })
   });
 }
- loginHandler(){
-        this.props.login(this.refs.goodscode.value)
-        // this.props.login(this.refs.goodscode.value)
-       // location.reload()
-    }
+
 
 render() {
   return (
-  <div id="PO">
-    <div className="top1">
+  <div id="POx">
+    <div className="top">
 
     <Form inline={true} model={this.state.form} onSubmit={this.onSubmit.bind(this)} className="demo-form-inline">
       <Form.Item>
-        <Input value={this.state.form.user1} placeholder="批次"  onChange={this.onChange.bind(this, 'user1')}></Input>
-        <Button nativeType="submit" type="primary"  onClick={this.loginHandler.bind(this)}>批次查询</Button>
+        <Input id="spc" value={this.state.form.user1} placeholder="批次" onChange={this.onChange.bind(this, 'user1')}></Input>
       </Form.Item>
-
+    <Form.Item>
+        <Button nativeType="submit" type="primary" id="pc">批次查询</Button>
+      </Form.Item>
       <Form.Item>
         <Select value={this.state.form.region} placeholder="查询供货商">
           <Select.Option label="区域一" value="shanghai"></Select.Option>
@@ -159,9 +167,11 @@ render() {
         </Select>
       </Form.Item>
     <Form.Item>
-        <Input value={this.state.form.user} placeholder="条码" ref="goodscode" onChange={this.onChange.bind(this, 'user')}></Input>
-        <Button nativeType="submit" type="primary" onClick={this.loginHandler.bind(this)}>单品查询</Button>
-      </Form.Item> 
+        <Input value={this.state.form.user} placeholder="条码" onChange={this.onChange.bind(this, 'user')}></Input>
+      </Form.Item>
+      <Form.Item>
+        <Button nativeType="submit" type="primary">条码查询</Button>
+      </Form.Item>
       <Form.Item>
         <Button nativeType="submit" type="primary"><Link to="/Qcompile">编辑 </Link></Button>
       </Form.Item>
@@ -171,22 +181,34 @@ render() {
     </div>
 
 
+  <div className="main" id="ma1">
 
- <Table
-      style={{width: '100%'}}
-      columns={this.state.columns}
-      data={this.state.data}
-      border={true}
-      maxHeight={400}
-    />
- 
+
+   <Table className="main2" id="ma2"
+        style={{width: '100%', marginTop: 20}}
+        height={450}
+        showSummary={true}
+        columns={this.state.columns}
+        data={this.state.data}
+        sumText='总价'
+        
+        border={true}
+      />
+   </div>
 </div> 
-
   )
 }
 }
-const mapStateToProps = state => ({
-    loading: state.login.loading,
-})
+const mapStateToProps = state => {
 
-export default POComponent;
+console.log(state)
+  return {
+          data:state.Search.Search.data,//定义props.data
+    }
+
+}
+   
+    
+//这句起关键性作用连接action跟reducer间的联系
+export default connect(mapStateToProps, POActions)(POComponent)
+

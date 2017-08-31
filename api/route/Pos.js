@@ -21,6 +21,7 @@ module.exports = {
         app.post('/code', urlencodedParser, function(request, response){
             console.log(request.body.Code);
             mysql.queryCode(request.body.Code, function(result){
+                console.log('code11',result)
                 response.send(result);
             })
         });

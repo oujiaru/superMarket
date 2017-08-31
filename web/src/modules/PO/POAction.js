@@ -1,14 +1,14 @@
 import * as constants  from './POConstant';
 
-export function login(aa){
 
+export function Search(){
+	
     return {
-        types: [constants.PO_REQUEST, constants.PO_SUCCESS, constants.PO_FAILURE],
-        path: 'cha1',
+
+        types: [constants.Quote_REQUEST, constants.Quote_SUCCESS, constants.Quote_FAIL],
+        path: 'cx',
         method: 'post',
-       	query: {aa:aa}
+        query: {}
+
     }
-    // return {
-    // 	type: constants.REQUEST
-    // }
-}
+};

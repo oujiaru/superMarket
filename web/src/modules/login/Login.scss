@@ -34,7 +34,7 @@
 				width:300px;
 			    padding: 0 30px;
 			}
-			li:first-child{
+			.header{
 				border-top-left-radius:2em;
 				border-top-right-radius:2em;
 				height:70px;
@@ -44,23 +44,54 @@
 					line-height:70px;
 				}
 			}
-			li:nth-child(2){
+			.username{
 				padding-top:12px;
 			}
-			li:nth-child(3){
+			.psw{
 				padding-bottom:24px;
 				padding-top:12px;
 			}
-			li:nth-child(4){
+			.btn{
 				padding:12px 30px;
 				background-color: #444;
 				border-bottom-left-radius:2em;
 				border-bottom-right-radius:2em;
+				button{
+					
+					border:none;
+					width:60px;
+					height:40px;
+					
+					
+				}
+				.reg{
+					padding:0;
+					float:right;
+					line-height:40px;
+					height:40px;
+					a{
+						color:white;
+					}
+				}
+				
 			}
-			li:last-child{
+			.btnColor{
+				color:white;
+				background-color:#20A0FF;
+			}
+
+			.loading{
 				display:none;
 
 			}
+		}
+		.el-alert{
+			width:350px;
+			position:absolute;
+			left:50%;
+			top:0;
+			transform:translate(-50%,0);
+			display:none;
 		}
 	}
 }
