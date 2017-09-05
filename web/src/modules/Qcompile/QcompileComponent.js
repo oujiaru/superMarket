@@ -3,8 +3,7 @@ import './Qcompile.scss';
 
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import { Input } from 'element-react';
-import { MessageBox} from 'element-react';
+import { Input,MessageBox  } from 'element-react';
 import * as QcompileActions from './QcompileAction'
 import $ from '../../libs/jquery/jquery-3.2.1.js'
 
@@ -21,10 +20,10 @@ class QcompileComponent extends Component {
         message: '采购信息保存成功',
         showCancelButton: true
         }).then(action => {
-        Message({
-          type: 'info',
-          message: 'action: ' + action
-        });
+        // Message({
+        //   type: 'info',
+        //   message: 'action: ' + action
+        // });
         })
     }
 
@@ -68,7 +67,7 @@ class QcompileComponent extends Component {
                     <li className="nof2">采购单确认时间:<input placeholder="请输入内容"  ref="poacknowledgingtime"/></li>
                     <li className="nof2">采购单状态:<input placeholder="请输入内容"  ref="postate"/></li>
                     <li className="nof2">采购员:<input placeholder="请输入内容"  ref="pobuyer"/></li>
-                </ul>
+                </ul>采购单状态
                  
                  <button onClick={this.loginHandler.bind(this)}><button type="text" id = "ying"  onClick={this.onClick.bind(this)}>保存</button></button>
                 

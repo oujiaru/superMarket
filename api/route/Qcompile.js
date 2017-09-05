@@ -47,12 +47,12 @@ module.exports = {
         }); 
                 app.post('/nums',urlencodedParser, function(request, response){
             //请求数据库
-        
+                
             // console.log(request.body);
             // response.send('response')
             console.log(request.body)
             mysql.query('xiao1',request.body, function(result){
-                    console.log(12)
+                    
                     response.send(result)
 
                 

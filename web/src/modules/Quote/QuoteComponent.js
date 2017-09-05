@@ -31,38 +31,38 @@ this.loginHandler
       },
       {
         label: "商品条码(*)",
-        prop: "barcode",
+        prop: "goodscode",
         width: 160,
         align:"center",
       },
       {
         label: "商品名称(*)",
-        prop: "productname",
+        prop: "goodsname",
         align:"center",
         width: 160
       },
       {
         label: "商品货号",
-        prop: "supplierID",
+        prop: "goodsnumber",
         align:"center",
         width: 80
       },
       {
         label: "商品类别",
-        prop: "category",
+        prop: "goodsstyle",
         align:"center",
         width: 80
       }
       ,
       {
         label: "单位",
-        prop: "standard",
+        prop: "goodsnuit",
         align:"center",
         width: 80
       },
       {
         label: "进货价",
-        prop: "retailprice",
+        prop: "poprice",
         align:"center",
         width: 100
       },
@@ -74,7 +74,7 @@ this.loginHandler
       },
       {
         label: "规格",
-        prop: "units",
+        prop: "goodsmodel",
         align:"center",
         width: 120
       },
@@ -120,9 +120,9 @@ this.loginHandler
 
 
 //商品搜索
-Shousuo(){
+Sousuo(){
  
-   this.props.Shousuo(this.refs.goodscode.refs.input.value)
+   this.props.Sousuo(this.refs.goodscode.refs.input.value)
 }
 
 
@@ -132,10 +132,10 @@ onClick() {
     message: '确定要删除吗',
     showCancelButton: true
   }).then(action => {
-    Message({
-      type: 'info',
-      message: '删除成功 ' + action
-    });
+    // Message({ 
+    //   type: 'info',
+    //   message: '删除成功 ' + action
+    // });
   })
 }
 
@@ -145,8 +145,8 @@ onClick() {
 
 componentDidMount(){
 
-  this.props.num()
-  this.props.Search(min,max)
+  this.props.nums()
+  
   //删除商品提示
    var $del = $('.el-table__body')
 
@@ -212,7 +212,7 @@ render() {
        <p>商品条形码/货号/名称</p>
         <div className="smore">
           <Input placeholder="请输入内容"  ref="goodscode"/>
-           <Button type="primary"  onClick={this.Shousuo.bind(this)} >查询</Button>
+           <Button type="primary"  onClick={this.Sousuo.bind(this)} >查询</Button>
            <Button type="primary"  onClick={this.Handler.bind(this)} >刷新</Button>
         </div>
         <Table
@@ -246,11 +246,12 @@ render() {
 
 //state可以理解为store树里面有多有不同组件action的行为方法，是所有Reducer返回的数据集合，是不同组件通信媒介
 const mapStateToProps = state => {
-console.log(state)
+console.log('999',state)
   return {
-          data:state.Search.Search.data,
-          date:state.Search.num.data,
-          datashou:state.Search.Shousuo.data
+
+          data:state.Quote.nums.data,
+          datashou:state.Quote.Search.data,
+          datashou:state.Quote.Sousuo.data
         
     }
 

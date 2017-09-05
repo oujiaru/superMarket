@@ -24,7 +24,7 @@ function Search(state = {loading: false}, action){
             reState.loading = false
 
             break
-        case types.Quote_FAIL:
+        case types.Quote_FAILURE:
             reState.error = action.error
             reState.loading = false
             break

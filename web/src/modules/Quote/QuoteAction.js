@@ -3,13 +3,13 @@ import * as constants from './QuoteConstant'
 //引入Constant概念为了防止一个action引发所有组件的Reducer(这也是组件可以通信的原因),
 //组件action行为，当有多个动作
 
-export function Search(){
+export function Search(min,max){
 	
     return {
         types: [constants.Quote_REQUEST, constants.Quote_SUCCESS, constants.Quote_FAIL],
         path: 'cx',
         method: 'post',
-        query: {}
+        query: {min,max}
     }
 };
 export function nums(){

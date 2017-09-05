@@ -4,16 +4,21 @@ import {routerReducer as router} from 'react-router-redux'
 import Search from '../modules/management/Search/SearchReducer'
 
 import code from '../modules/POS/PosReducer'
+import  PO from '../modules/PO/POReducer'
+import  Qcompile from '../modules/Qcompile/QcompileReducer'
+import  Quote from '../modules/Quote/QuoteReducer'
+
 
 import {combineReducers} from 'redux'
 
 const rootReducer = combineReducers({
     login,
     router,
-
+    PO,
     Search,
-
-    code
+    Qcompile,
+    code,
+    Quote,
 
 })
 

@@ -121,10 +121,10 @@ onClick() {
     message: '确定要删除吗',
     showCancelButton: true
   }).then(action => {
-    Message({
-      type: 'info',
-      message: '删除成功 ' + action
-    });
+    // Message({
+    //   type: 'info',
+    //   message: '删除成功 ' + action
+    // });
   })
 }
 
@@ -235,7 +235,7 @@ render() {
 
 //state可以理解为store树里面有多有不同组件action的行为方法，是所有Reducer返回的数据集合，是不同组件通信媒介
 const mapStateToProps = state => {
-console.log(state)
+console.log('6667',state)
   return {
           data:state.Search.Search.data,
           date:state.Search.num.data,

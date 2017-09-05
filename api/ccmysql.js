@@ -70,14 +70,16 @@ module.exports = {
 		});
 		connection.end();
 	},
-	query: function(data, callback){
+	query: function(table,data, callback){
 		LinkMysql();
-		var  sql = 'SELECT * FROM goods WHERE Code = '+ data +'';
+		var  sql = 'SELECT * FROM xiao1';
 		connection.query(sql,function (err, result) {
+			console.log(result)
+
 		   if(!err){
 			    if(callback && typeof callback == 'function'){
 			    	callback(result);
-			    	
+
 			    }
 		    }       
 		});
@@ -90,7 +92,7 @@ module.exports = {
 
 		// var  sql = 'SELECT * FROM sup ';
 		// var  sql = 'SELECT * FROM supp where indexid between '+(res.min-1)*res.max+' and '+res.max*res.min;
-		var sql = 'SELECT * FROM supp';
+		var sql = 'SELECT * FROM xiao1';
 		connection.query(sql,function (err, result) {
 			console.log(result)
 
@@ -115,7 +117,7 @@ module.exports = {
 		connection.connect();
 
 		// var  sql = 'SELECT * FROM sup ';
-		var  sql = 'select  * from supp a where a.goodsName like'+ ''%'+res.zi+'%'';
+		var  sql = 'select  * from xiao1 a where a.goodscode like'+ ''%'+res.zi+'%'';
 		connection.query(sql,function (err, result) {
 			
 
